@@ -1,5 +1,5 @@
-# 使用nginx作为基础镜像
-FROM nginx:alpine
+# 使用nginx作为基础镜像，指定具体版本
+FROM nginx:1.24.0-alpine
 
 # 设置工作目录
 WORKDIR /usr/share/nginx/html
