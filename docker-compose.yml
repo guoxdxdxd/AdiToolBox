@@ -6,4 +6,13 @@ services:
     container_name: aditoolbox
     ports:
       - "8080:80"
-    restart: unless-stopped 
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+    user: nginx
+    volumes:
+      - ./:/usr/share/nginx/html:ro 
