@@ -10,7 +10,7 @@ AdiToolBox/
 ├── index.html                # 项目首页，提供所有功能工具的统一入口和导航界面
 ├── layout.html               # 布局页面，提供统一的页面布局和导航框架，通过iframe嵌入功能页面
 ├── tools/                    # 存放简化版功能模块，用于在layout.html中嵌入
-│   ├── json-tools.html       # JSON工具模块，提供JSON序列化、压缩、转义和去除转义等功能，设计为在layout.html框架中嵌入使用。包含文本编辑器行号显示功能，提升代码阅读体验，不包含重复的标题栏和导航菜单
+│   ├── json-tools.html       # JSON工具模块，提供JSON序列化、压缩、转义和去除转义等功能，设计为在layout.html框架中嵌入使用。集成了jsoneditor组件，支持JSON的树形结构展示、节点折叠/展开、代码编辑等高级功能。包含文本编辑器行号显示功能，提升代码阅读体验，不包含重复的标题栏和导航菜单
 │   ├── string-diff.html      # 字符串差异对比工具模块，提供文本差异对比功能
 │   └── cron-generator.html   # Cron表达式生成器模块，支持7位长度cron表达式，提供可视化配置界面
 ├── assets/                   # 存放静态资源文件
@@ -24,7 +24,7 @@ AdiToolBox/
 │   │   └── nav-menu.css      # 导航菜单的样式文件，提供固定定位的下拉菜单效果
 │   ├── js/                   # JavaScript文件目录
 │   │   ├── index.js          # 首页的JavaScript实现，提供工具导航和交互功能
-│   │   ├── json-tools.js     # JSON工具页面的JavaScript实现文件，包含JSON处理、文本选择、转义处理等核心功能的实现代码。实现了行号的自动更新、滚动同步等功能，提供更好的代码编辑体验
+│   │   ├── json-tools.js     # JSON工具页面的JavaScript实现文件，包含JSON处理、文本选择、转义处理等核心功能的实现代码。集成了jsoneditor组件，实现了JSON的树形结构展示、节点折叠/展开、选中文本处理等功能。支持局部文本的转义和去除转义操作，实现了行号的自动更新、滚动同步等功能，提供更好的代码编辑体验
 │   │   ├── string-diff2.js   # 字符串差异对比工具V2的核心JavaScript实现
 │   │   ├── cron-generator4.js # Cron表达式生成器第四版的JavaScript实现
 │   │   ├── cron-generator5.js # Cron表达式生成器第五版的JavaScript实现
@@ -57,7 +57,7 @@ Docker Compose服务编排配置文件，定义了服务名称、构建配置、
 布局页面，提供统一的页面框架和导航结构，通过iframe加载tools目录下的功能模块，实现统一的用户界面和导航体验，减少重复代码。
 
 ### tools/json-tools.html
-JSON工具模块，提供JSON序列化、压缩、转义和去除转义等功能，设计为在layout.html框架中嵌入使用。包含文本编辑器行号显示功能，提升代码阅读体验，不包含重复的标题栏和导航菜单。
+JSON工具模块，提供JSON序列化、压缩、转义和去除转义等功能，设计为在layout.html框架中嵌入使用。集成了jsoneditor组件，支持JSON的树形结构展示、节点折叠/展开、代码编辑等高级功能。包含文本编辑器行号显示功能，提升代码阅读体验，不包含重复的标题栏和导航菜单。
 
 ### tools/string-diff.html
 字符串差异对比工具模块，提供文本差异对比功能，设计为在layout.html框架中嵌入使用，不包含重复的标题栏和导航菜单。
@@ -90,7 +90,7 @@ Cron表达式生成器第五版的样式表文件，采用Grid布局设计，支
 首页的JavaScript实现，提供工具导航和交互功能，记录用户最近使用的工具，提升用户体验。
 
 ### assets/js/json-tools.js
-JSON工具页面的JavaScript实现文件，包含JSON处理、文本选择、转义处理等核心功能的实现代码。实现了行号的自动更新、滚动同步等功能，提供更好的代码编辑体验。
+JSON工具页面的JavaScript实现文件，包含JSON处理、文本选择、转义处理等核心功能的实现代码。集成了jsoneditor组件，实现了JSON的树形结构展示、节点折叠/展开、选中文本处理等功能。支持局部文本的转义和去除转义操作，实现了行号的自动更新、滚动同步等功能，提供更好的代码编辑体验。
 
 ### assets/js/string-diff2.js
 字符串差异对比工具V2的核心JavaScript实现，采用模块化设计，提供更好的代码组织和维护性。

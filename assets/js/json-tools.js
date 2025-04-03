@@ -4,6 +4,27 @@ const notification = document.getElementById('notification');
 const historyList = document.getElementById('historyList');
 const lineNumbers = document.getElementById('lineNumbers');
 
+// 初始化JSONEditor
+const container = document.getElementById('jsoneditor');
+const options = {
+    mode: 'code',
+    modes: ['code', 'tree'],
+    onChangeText: function(jsonString) {
+        // 当内容改变时，同步到原始编辑器并更新历史记录
+        editor.value = jsonString;
+        history.push(jsonString);
+    },
+    onValidationError: function(errors) {
+        // 忽略验证错误，允许输入非JSON内容
+    },
+    mainMenuBar: false,
+    statusBar: false,
+    navigationBar: false
+};
+const jsonEditor = new JSONEditor(container, options);
+// 设置空的初始值
+jsonEditor.setText('');
+
 // 历史记录管理
 const history = {
     records: [],
@@ -213,10 +234,35 @@ function tryUnescapeText(text) {
     }
 }
 
+// 工具函数：获取编辑器内容
+function getEditorContent() {
+    try {
+        return jsonEditor.getText();
+    } catch (error) {
+        return '';
+    }
+}
+
+// 工具函数：设置编辑器内容
+function setEditorContent(text) {
+    try {
+        // 尝试解析JSON
+        const json = JSON.parse(text);
+        jsonEditor.set(json);
+    } catch {
+        // 如果不是有效的JSON，直接设置文本
+        jsonEditor.setText(text);
+    }
+    // 同步到原始编辑器
+    editor.value = text;
+    // 添加到历史记录
+    history.push(text);
+}
+
 // JSON序列化
 document.getElementById('jsonSerialize').addEventListener('click', () => {
     try {
-        const text = getSelectedText();
+        const text = getEditorContent();
         let result;
         
         try {
@@ -237,7 +283,7 @@ document.getElementById('jsonSerialize').addEventListener('click', () => {
             }
         }
         
-        replaceSelectedText(result);
+        setEditorContent(result);
         // 添加到JSON序列化历史记录
         jsonHistory.addRecord(result);
         showNotification('JSON序列化成功！');
@@ -249,49 +295,131 @@ document.getElementById('jsonSerialize').addEventListener('click', () => {
 // 压缩JSON
 document.getElementById('jsonCompress').addEventListener('click', () => {
     try {
-        const text = getSelectedText();
+        const text = getEditorContent();
+        console.log('原始文本:', text); // 调试日志
+
+        // 如果文本为空，直接返回
+        if (!text || !text.trim()) {
+            showNotification('请输入要压缩的文本', true);
+            return;
+        }
+
         let result;
-        
         try {
-            // 尝试先去除转义
-            const unescapedText = tryUnescapeText(text);
-            // 尝试解析JSON
-            const parsed = JSON.parse(unescapedText);
+            // 尝试直接解析JSON
+            const parsed = JSON.parse(text);
+            console.log('解析后的JSON:', parsed); // 调试日志
             result = JSON.stringify(parsed);
-        } catch {
+            console.log('压缩后的JSON:', result); // 调试日志
+        } catch (parseError) {
+            console.log('直接解析失败:', parseError); // 调试日志
             try {
-                // 如果去除转义后解析失败，尝试直接解析原文本
-                const parsed = JSON.parse(text);
+                // 尝试去除转义后再解析
+                const unescapedText = tryUnescapeText(text);
+                console.log('去除转义后的文本:', unescapedText); // 调试日志
+                const parsed = JSON.parse(unescapedText);
                 result = JSON.stringify(parsed);
-            } catch {
-                // 如果不是有效的JSON，提示错误
+            } catch (unescapeError) {
+                console.log('去除转义后解析失败:', unescapeError); // 调试日志
                 showNotification('请输入有效的JSON文本', true);
                 return;
             }
         }
 
+        // 确保result不为空
+        if (!result) {
+            showNotification('压缩失败：无法生成结果', true);
+            return;
+        }
+
         // 移除所有空格、换行和缩进
         result = result.replace(/\s+/g, '');
         
-        replaceSelectedText(result);
+        // 设置编辑器内容
+        jsonEditor.setText(result);
+        // 同步到原始编辑器
+        editor.value = result;
+        // 添加到历史记录
+        history.push(result);
+        
         showNotification('JSON压缩成功！');
     } catch (error) {
+        console.error('压缩过程出错:', error); // 调试日志
         showNotification('JSON压缩失败：' + error.message, true);
     }
 });
 
+// 工具函数：获取jsonEditor中选中的文本
+function getJsonEditorSelection() {
+    try {
+        const aceEditor = jsonEditor.aceEditor;
+        if (!aceEditor) return null;
+        
+        const selection = aceEditor.getSelection();
+        const range = selection.getRange();
+        const selectedText = aceEditor.session.getTextRange(range);
+        
+        return {
+            text: selectedText,
+            hasSelection: selectedText.length > 0,
+            range: range
+        };
+    } catch (error) {
+        console.error('获取选中文本失败:', error);
+        return null;
+    }
+}
+
+// 工具函数：替换jsonEditor中选中的文本
+function replaceJsonEditorSelection(newText, selection) {
+    try {
+        const aceEditor = jsonEditor.aceEditor;
+        if (!aceEditor) return false;
+        
+        if (selection && selection.hasSelection) {
+            aceEditor.session.replace(selection.range, newText);
+        } else {
+            jsonEditor.setText(newText);
+        }
+        
+        // 同步到原始编辑器
+        editor.value = jsonEditor.getText();
+        // 添加到历史记录
+        history.push(editor.value);
+        
+        return true;
+    } catch (error) {
+        console.error('替换选中文本失败:', error);
+        return false;
+    }
+}
+
 // 转义文本
 document.getElementById('escapeText').addEventListener('click', () => {
     try {
-        const text = getSelectedText();
-        const result = text
+        // 获取选中的文本
+        const selection = getJsonEditorSelection();
+        if (!selection) {
+            showNotification('获取选中文本失败', true);
+            return;
+        }
+
+        // 获取要处理的文本
+        const textToEscape = selection.hasSelection ? selection.text : jsonEditor.getText();
+        
+        // 处理文本
+        const result = textToEscape
             .replace(/\\/g, '\\\\')  // 反斜杠
             .replace(/"/g, '\\"')    // 双引号
             .replace(/'/g, "\\'")    // 单引号
             .replace(/\f/g, '\\f');  // 换页
 
-        replaceSelectedText(result);
-        showNotification('文本转义成功！');
+        // 替换文本
+        if (replaceJsonEditorSelection(result, selection)) {
+            showNotification('文本转义成功！');
+        } else {
+            showNotification('文本转义失败', true);
+        }
     } catch (error) {
         showNotification('文本转义失败：' + error.message, true);
     }
@@ -300,10 +428,25 @@ document.getElementById('escapeText').addEventListener('click', () => {
 // 去除转义
 document.getElementById('unescapeText').addEventListener('click', () => {
     try {
-        const text = getSelectedText();
-        const result = tryUnescapeText(text);
-        replaceSelectedText(result);
-        showNotification('去除转义成功！');
+        // 获取选中的文本
+        const selection = getJsonEditorSelection();
+        if (!selection) {
+            showNotification('获取选中文本失败', true);
+            return;
+        }
+
+        // 获取要处理的文本
+        const textToUnescape = selection.hasSelection ? selection.text : jsonEditor.getText();
+        
+        // 处理文本
+        const result = tryUnescapeText(textToUnescape);
+
+        // 替换文本
+        if (replaceJsonEditorSelection(result, selection)) {
+            showNotification('去除转义成功！');
+        } else {
+            showNotification('去除转义失败', true);
+        }
     } catch (error) {
         showNotification('去除转义失败：' + error.message, true);
     }
@@ -311,9 +454,7 @@ document.getElementById('unescapeText').addEventListener('click', () => {
 
 // 清空文本
 document.getElementById('clearText').addEventListener('click', () => {
-    editor.value = '';
-    // 添加到历史记录
-    history.push(editor.value);
+    setEditorContent('');
     showNotification('已清空文本！');
 });
 
@@ -325,7 +466,7 @@ document.getElementById('clearHistory').addEventListener('click', () => {
 
 // 复制文本
 document.getElementById('copyText').addEventListener('click', () => {
-    const text = getSelectedText();
+    const text = getEditorContent();
     if (!text) {
         showNotification('没有可复制的内容！', true);
         return;
@@ -336,4 +477,4 @@ document.getElementById('copyText').addEventListener('click', () => {
     }).catch(error => {
         showNotification('复制失败：' + error.message, true);
     });
-}); 
+});
