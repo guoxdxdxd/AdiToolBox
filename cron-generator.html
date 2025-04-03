@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron表达式生成器</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/cron-generator5.css">
+    <style>
+        /* 内容页面特定样式 */
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: transparent;
+            overflow: auto;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+            height: auto;
+        }
+        
+        /* 隐藏不需要的元素 */
+        .page-header, .nav-menu, .nav-menu-toggle {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cron-builder">
+            <!-- Cron表达式输入区 -->
+            <div class="cron-expression-wrapper">
+                <div class="expression-input-group">
+                    <label for="cron-expression">Cron表达式</label>
+                    <input type="text" id="cron-expression" class="cron-expression" placeholder="* * * * * ? *">
+                    <div class="expression-format">秒 分 时 日 月 周 年</div>
+                </div>
+                <div class="error-message"></div>
+            </div>
+
+            <!-- 主体内容区域左右布局 -->
+            <div class="layout-wrapper">
+                <!-- 左侧区域：配置面板 -->
+                <div class="left-column" id="configPanels">
+                    <div class="config-panels">
+                        <!-- 秒配置 -->
+                        <div class="time-unit-panel" data-field="second">
+                            <div class="panel-header">
+                                <h3>秒</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="second-every" name="second-type" value="every" checked>
+                                        <label for="second-every">每秒</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="second-specific" name="second-type" value="specific">
+                                        <label for="second-specific">指定秒</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="second-range" name="second-type" value="range">
+                                        <label for="second-range">区间</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="second-cycle" name="second-type" value="cycle">
+                                        <label for="second-cycle">周期</label>
+                                    </div>
+                                </div>
+
+                                <!-- 指定值选择器 -->
+                                <div class="value-selector specific-selector" id="second-specific-selector">
+                                    <div class="selector-grid">
+                                        <script>
+                                            for(let i = 0; i < 60; i++) {
+                                                document.write(`<div class="selector-item" data-value="${i}">${i}</div>`);
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <!-- 区间选择器 -->
+                                <div class="value-selector range-selector" id="second-range-selector">
+                                    <div class="range-inputs">
+                                        <div class="range-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="second-range-start" min="0" max="59" value="0">
+                                        </div>
+                                        <div class="range-separator">到</div>
+                                        <div class="range-input-group">
+                                            <label>至</label>
+                                            <input type="number" class="second-range-end" min="0" max="59" value="59">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 周期选择器 -->
+                                <div class="value-selector cycle-selector" id="second-cycle-selector">
+                                    <div class="cycle-inputs">
+                                        <div class="cycle-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="second-cycle-start" min="0" max="59" value="0">
+                                        </div>
+                                        <div class="cycle-input-group">
+                                            <label>每隔</label>
+                                            <input type="number" class="second-cycle-step" min="1" max="59" value="1">
+                                            <span>秒执行一次</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 分钟配置 -->
+                        <div class="time-unit-panel" data-field="minute">
+                            <div class="panel-header">
+                                <h3>分钟</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="minute-every" name="minute-type" value="every" checked>
+                                        <label for="minute-every">每分钟</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="minute-specific" name="minute-type" value="specific">
+                                        <label for="minute-specific">指定分钟</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="minute-range" name="minute-type" value="range">
+                                        <label for="minute-range">区间</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="minute-cycle" name="minute-type" value="cycle">
+                                        <label for="minute-cycle">周期</label>
+                                    </div>
+                                </div>
+
+                                <!-- 指定值选择器 -->
+                                <div class="value-selector specific-selector" id="minute-specific-selector">
+                                    <div class="selector-grid">
+                                        <script>
+                                            for(let i = 0; i < 60; i++) {
+                                                document.write(`<div class="selector-item" data-value="${i}">${i}</div>`);
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <!-- 区间选择器 -->
+                                <div class="value-selector range-selector" id="minute-range-selector">
+                                    <div class="range-inputs">
+                                        <div class="range-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="minute-range-start" min="0" max="59" value="0">
+                                        </div>
+                                        <div class="range-separator">到</div>
+                                        <div class="range-input-group">
+                                            <label>至</label>
+                                            <input type="number" class="minute-range-end" min="0" max="59" value="59">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 周期选择器 -->
+                                <div class="value-selector cycle-selector" id="minute-cycle-selector">
+                                    <div class="cycle-inputs">
+                                        <div class="cycle-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="minute-cycle-start" min="0" max="59" value="0">
+                                        </div>
+                                        <div class="cycle-input-group">
+                                            <label>每隔</label>
+                                            <input type="number" class="minute-cycle-step" min="1" max="59" value="1">
+                                            <span>分钟执行一次</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 小时配置 -->
+                        <div class="time-unit-panel" data-field="hour">
+                            <div class="panel-header">
+                                <h3>小时</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="hour-every" name="hour-type" value="every" checked>
+                                        <label for="hour-every">每小时</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="hour-specific" name="hour-type" value="specific">
+                                        <label for="hour-specific">指定小时</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="hour-range" name="hour-type" value="range">
+                                        <label for="hour-range">区间</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="hour-cycle" name="hour-type" value="cycle">
+                                        <label for="hour-cycle">周期</label>
+                                    </div>
+                                </div>
+
+                                <!-- 指定值选择器 -->
+                                <div class="value-selector specific-selector" id="hour-specific-selector">
+                                    <div class="selector-grid">
+                                        <script>
+                                            for(let i = 0; i < 24; i++) {
+                                                document.write(`<div class="selector-item" data-value="${i}">${i}</div>`);
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <!-- 区间选择器 -->
+                                <div class="value-selector range-selector" id="hour-range-selector">
+                                    <div class="range-inputs">
+                                        <div class="range-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="hour-range-start" min="0" max="23" value="0">
+                                        </div>
+                                        <div class="range-separator">到</div>
+                                        <div class="range-input-group">
+                                            <label>至</label>
+                                            <input type="number" class="hour-range-end" min="0" max="23" value="23">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 周期选择器 -->
+                                <div class="value-selector cycle-selector" id="hour-cycle-selector">
+                                    <div class="cycle-inputs">
+                                        <div class="cycle-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="hour-cycle-start" min="0" max="23" value="0">
+                                        </div>
+                                        <div class="cycle-input-group">
+                                            <label>每隔</label>
+                                            <input type="number" class="hour-cycle-step" min="1" max="23" value="1">
+                                            <span>小时执行一次</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 日配置 -->
+                        <div class="time-unit-panel" data-field="day">
+                            <div class="panel-header">
+                                <h3>日</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="day-every" name="day-type" value="every" checked>
+                                        <label for="day-every">每日</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="day-not-specify" name="day-type" value="not-specify">
+                                        <label for="day-not-specify">不指定</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="day-specific" name="day-type" value="specific">
+                                        <label for="day-specific">指定日期</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="day-range" name="day-type" value="range">
+                                        <label for="day-range">区间</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="day-cycle" name="day-type" value="cycle">
+                                        <label for="day-cycle">周期</label>
+                                    </div>
+                                </div>
+
+                                <!-- 指定值选择器 -->
+                                <div class="value-selector specific-selector" id="day-specific-selector">
+                                    <div class="selector-grid">
+                                        <script>
+                                            for(let i = 1; i <= 31; i++) {
+                                                document.write(`<div class="selector-item" data-value="${i}">${i}</div>`);
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <!-- 区间选择器 -->
+                                <div class="value-selector range-selector" id="day-range-selector">
+                                    <div class="range-inputs">
+                                        <div class="range-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="day-range-start" min="1" max="31" value="1">
+                                        </div>
+                                        <div class="range-separator">到</div>
+                                        <div class="range-input-group">
+                                            <label>至</label>
+                                            <input type="number" class="day-range-end" min="1" max="31" value="31">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 周期选择器 -->
+                                <div class="value-selector cycle-selector" id="day-cycle-selector">
+                                    <div class="cycle-inputs">
+                                        <div class="cycle-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="day-cycle-start" min="1" max="31" value="1">
+                                        </div>
+                                        <div class="cycle-input-group">
+                                            <label>每隔</label>
+                                            <input type="number" class="day-cycle-step" min="1" max="31" value="1">
+                                            <span>天执行一次</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 月配置 -->
+                        <div class="time-unit-panel" data-field="month">
+                            <div class="panel-header">
+                                <h3>月</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="month-every" name="month-type" value="every" checked>
+                                        <label for="month-every">每月</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="month-specific" name="month-type" value="specific">
+                                        <label for="month-specific">指定月份</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="month-range" name="month-type" value="range">
+                                        <label for="month-range">区间</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="month-cycle" name="month-type" value="cycle">
+                                        <label for="month-cycle">周期</label>
+                                    </div>
+                                </div>
+
+                                <!-- 指定值选择器 -->
+                                <div class="value-selector specific-selector" id="month-specific-selector">
+                                    <div class="selector-grid month-grid">
+                                        <script>
+                                            const months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+                                            for(let i = 1; i <= 12; i++) {
+                                                document.write(`<div class="selector-item" data-value="${i}">${months[i-1]}</div>`);
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <!-- 区间选择器 -->
+                                <div class="value-selector range-selector" id="month-range-selector">
+                                    <div class="range-inputs">
+                                        <div class="range-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="month-range-start" min="1" max="12" value="1">
+                                        </div>
+                                        <div class="range-separator">到</div>
+                                        <div class="range-input-group">
+                                            <label>至</label>
+                                            <input type="number" class="month-range-end" min="1" max="12" value="12">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 周期选择器 -->
+                                <div class="value-selector cycle-selector" id="month-cycle-selector">
+                                    <div class="cycle-inputs">
+                                        <div class="cycle-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="month-cycle-start" min="1" max="12" value="1">
+                                        </div>
+                                        <div class="cycle-input-group">
+                                            <label>每隔</label>
+                                            <input type="number" class="month-cycle-step" min="1" max="12" value="1">
+                                            <span>月执行一次</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 周配置 -->
+                        <div class="time-unit-panel" data-field="week">
+                            <div class="panel-header">
+                                <h3>周</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="week-every" name="week-type" value="every">
+                                        <label for="week-every">每周</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="week-not-specify" name="week-type" value="not-specify" checked>
+                                        <label for="week-not-specify">不指定</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="week-specific" name="week-type" value="specific">
+                                        <label for="week-specific">指定星期</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="week-range" name="week-type" value="range">
+                                        <label for="week-range">区间</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="week-cycle" name="week-type" value="cycle">
+                                        <label for="week-cycle">周期</label>
+                                    </div>
+                                </div>
+
+                                <!-- 指定值选择器 -->
+                                <div class="value-selector specific-selector" id="week-specific-selector">
+                                    <div class="selector-grid week-grid">
+                                        <div class="selector-item" data-value="1">周日</div>
+                                        <div class="selector-item" data-value="2">周一</div>
+                                        <div class="selector-item" data-value="3">周二</div>
+                                        <div class="selector-item" data-value="4">周三</div>
+                                        <div class="selector-item" data-value="5">周四</div>
+                                        <div class="selector-item" data-value="6">周五</div>
+                                        <div class="selector-item" data-value="7">周六</div>
+                                    </div>
+                                </div>
+
+                                <!-- 区间选择器 -->
+                                <div class="value-selector range-selector" id="week-range-selector">
+                                    <div class="range-inputs">
+                                        <div class="range-input-group">
+                                            <label>从</label>
+                                            <select class="week-range-start">
+                                                <option value="1">周日</option>
+                                                <option value="2">周一</option>
+                                                <option value="3">周二</option>
+                                                <option value="4">周三</option>
+                                                <option value="5">周四</option>
+                                                <option value="6">周五</option>
+                                                <option value="7">周六</option>
+                                            </select>
+                                        </div>
+                                        <div class="range-separator">到</div>
+                                        <div class="range-input-group">
+                                            <label>至</label>
+                                            <select class="week-range-end">
+                                                <option value="1">周日</option>
+                                                <option value="2">周一</option>
+                                                <option value="3">周二</option>
+                                                <option value="4">周三</option>
+                                                <option value="5">周四</option>
+                                                <option value="6">周五</option>
+                                                <option value="7" selected>周六</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 周期选择器 -->
+                                <div class="value-selector cycle-selector" id="week-cycle-selector">
+                                    <div class="cycle-inputs">
+                                        <div class="cycle-input-group">
+                                            <label>从</label>
+                                            <select class="week-cycle-start">
+                                                <option value="1">周日</option>
+                                                <option value="2">周一</option>
+                                                <option value="3">周二</option>
+                                                <option value="4">周三</option>
+                                                <option value="5">周四</option>
+                                                <option value="6">周五</option>
+                                                <option value="7">周六</option>
+                                            </select>
+                                        </div>
+                                        <div class="cycle-input-group">
+                                            <label>每隔</label>
+                                            <input type="number" class="week-cycle-step" min="1" max="7" value="1">
+                                            <span>周执行一次</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 年配置 -->
+                        <div class="time-unit-panel" data-field="year">
+                            <div class="panel-header">
+                                <h3>年</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="year-every" name="year-type" value="every" checked>
+                                        <label for="year-every">每年</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="year-specific" name="year-type" value="specific">
+                                        <label for="year-specific">指定年份</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="year-range" name="year-type" value="range">
+                                        <label for="year-range">区间</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="year-cycle" name="year-type" value="cycle">
+                                        <label for="year-cycle">周期</label>
+                                    </div>
+                                </div>
+
+                                <!-- 指定值选择器 -->
+                                <div class="value-selector specific-selector" id="year-specific-selector">
+                                    <div class="selector-grid year-grid">
+                                        <script>
+                                            const currentYear = new Date().getFullYear();
+                                            for(let i = 0; i < 10; i++) {
+                                                const year = currentYear + i;
+                                                document.write(`<div class="selector-item" data-value="${year}">${year}</div>`);
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <!-- 区间选择器 -->
+                                <div class="value-selector range-selector" id="year-range-selector">
+                                    <div class="range-inputs">
+                                        <div class="range-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="year-range-start" min="2000" max="2100" value="2023">
+                                        </div>
+                                        <div class="range-separator">到</div>
+                                        <div class="range-input-group">
+                                            <label>至</label>
+                                            <input type="number" class="year-range-end" min="2000" max="2100" value="2030">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 周期选择器 -->
+                                <div class="value-selector cycle-selector" id="year-cycle-selector">
+                                    <div class="cycle-inputs">
+                                        <div class="cycle-input-group">
+                                            <label>从</label>
+                                            <input type="number" class="year-cycle-start" min="2000" max="2100" value="2023">
+                                        </div>
+                                        <div class="cycle-input-group">
+                                            <label>每隔</label>
+                                            <input type="number" class="year-cycle-step" min="1" max="100" value="1">
+                                            <span>年执行一次</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧区域：预览和示例 -->
+                <div class="right-column">
+                    <!-- 常用表达式 -->
+                    <div class="common-expressions">
+                        <div class="panel-header">
+                            <h2>常用表达式</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="common-expressions-list">
+                                <button class="preset-btn" data-expression="* * * * * ? *">
+                                    <div class="preset-name">每秒执行</div>
+                                    <div class="preset-expression">* * * * * ? *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 * * * * ? *">
+                                    <div class="preset-name">每分钟执行</div>
+                                    <div class="preset-expression">0 * * * * ? *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 0 * * * ? *">
+                                    <div class="preset-name">每小时执行</div>
+                                    <div class="preset-expression">0 0 * * * ? *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 0 0 * * ? *">
+                                    <div class="preset-name">每天凌晨执行</div>
+                                    <div class="preset-expression">0 0 0 * * ? *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 0 12 * * ? *">
+                                    <div class="preset-name">每天中午执行</div>
+                                    <div class="preset-expression">0 0 12 * * ? *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 0 0 ? * 2 *">
+                                    <div class="preset-name">每周一执行</div>
+                                    <div class="preset-expression">0 0 0 ? * 2 *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 0 0 1 * ? *">
+                                    <div class="preset-name">每月1日执行</div>
+                                    <div class="preset-expression">0 0 0 1 * ? *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 0 0 1 1 ? *">
+                                    <div class="preset-name">每年1月1日执行</div>
+                                    <div class="preset-expression">0 0 0 1 1 ? *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 0 0/1 * * ? *">
+                                    <div class="preset-name">每小时开始执行</div>
+                                    <div class="preset-expression">0 0 0/1 * * ? *</div>
+                                </button>
+                                <button class="preset-btn" data-expression="0 0 9-18 * * ? *">
+                                    <div class="preset-name">工作时间内每小时执行</div>
+                                    <div class="preset-expression">0 0 9-18 * * ? *</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 执行时间预览 -->
+                    <div class="execution-times">
+                        <div class="panel-header">
+                            <h2>执行时间预览</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="next-executions-list" id="next-executions">
+                                <div class="loading">加载中...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/cron-generator5.js"></script>
+</body>
+</html> 

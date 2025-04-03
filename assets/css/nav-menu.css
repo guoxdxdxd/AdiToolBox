@@ -1,0 +1,111 @@
+/* 导航菜单样式 */
+.nav-menu {
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    top: 0;
+}
+
+.nav-menu-toggle {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: background-color var(--transition-time), transform var(--transition-time);
+}
+
+.nav-menu-toggle:hover {
+    background-color: var(--primary-hover-color);
+    transform: scale(1.05);
+}
+
+.nav-menu-toggle svg {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-menu-content {
+    position: absolute;
+    top: 45px;
+    right: 80px;
+    background-color: var(--panel-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow-color);
+    width: 210px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity var(--transition-time), visibility var(--transition-time), transform var(--transition-time);
+}
+
+.nav-menu.active .nav-menu-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu-item {
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu-link {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color var(--transition-time);
+}
+
+.nav-menu-link:hover {
+    background-color: var(--background-color);
+}
+
+.nav-menu-link.active {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--primary-color);
+}
+
+.nav-menu-link svg {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+}
+
+.nav-menu-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0;
+}
+
+/* 移动设备适配 */
+@media (max-width: 768px) {
+    .nav-menu-toggle {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .nav-menu-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .nav-menu-content {
+        width: 180px;
+    }
+} 
