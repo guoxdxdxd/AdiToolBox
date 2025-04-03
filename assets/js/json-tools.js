@@ -2,6 +2,7 @@
 const editor = document.getElementById('editor');
 const notification = document.getElementById('notification');
 const historyList = document.getElementById('historyList');
+const lineNumbers = document.getElementById('lineNumbers');
 
 // 历史记录管理
 const history = {
@@ -108,10 +109,34 @@ const jsonHistory = {
 history.push(editor.value);
 jsonHistory.renderHistory();
 
+// 更新行号
+function updateLineNumbers() {
+    const lines = editor.value.split('\n');
+    const fragment = document.createDocumentFragment();
+    
+    lines.forEach((_, index) => {
+        const div = document.createElement('div');
+        div.textContent = index + 1;
+        fragment.appendChild(div);
+    });
+    
+    lineNumbers.innerHTML = '';
+    lineNumbers.appendChild(fragment);
+}
+
+// 同步滚动
+editor.addEventListener('scroll', () => {
+    lineNumbers.scrollTop = editor.scrollTop;
+});
+
 // 监听文本变化
 editor.addEventListener('input', () => {
     history.push(editor.value);
+    updateLineNumbers();
 });
+
+// 初始化行号
+updateLineNumbers();
 
 // 监听键盘事件
 editor.addEventListener('keydown', (e) => {
