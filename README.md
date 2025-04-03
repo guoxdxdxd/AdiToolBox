@@ -39,10 +39,29 @@ AdiToolBox/
 
 ## 如何使用
 
+### 方法一：直接使用
+
 1. 克隆或下载本仓库
 2. 使用浏览器直接打开 `index.html`，或通过任何静态文件服务器提供访问
 3. 从首页选择需要使用的工具
 4. 每个工具页面上方都有导航菜单，可随时切换到其他工具
+
+### 方法二：Docker部署
+
+1. 确保已安装 Docker 和 Docker Compose
+2. 克隆本仓库：`git clone https://github.com/yourusername/AdiToolBox.git`
+3. 进入项目目录：`cd AdiToolBox`
+4. 使用Docker Compose启动服务：
+   ```bash
+   docker-compose up -d
+   ```
+5. 访问 `http://localhost:8080` 即可使用
+
+Docker相关文件说明：
+- `Dockerfile`：用于构建Docker镜像，基于nginx:alpine
+- `docker-compose.yml`：定义服务配置，默认映射到8080端口
+
+如需修改访问端口，编辑 `docker-compose.yml` 文件中的端口映射配置。
 
 ## 工具详情
 

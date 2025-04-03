@@ -5,6 +5,8 @@ AdiToolBox/
 ├── README.md                 # 项目主要文档，包含项目介绍、功能列表、安装说明、使用指南等重要信息
 ├── DirectoryStructure.md     # 记录并维护项目的目录结构，包含每个文件的详细描述
 ├── DevDiary.md               # 开发日记，记录项目功能开发进度和技术实现细节
+├── Dockerfile               # Docker镜像构建文件，基于nginx:alpine，用于容器化部署
+├── docker-compose.yml       # Docker Compose配置文件，定义服务和端口映射，简化部署过程
 ├── index.html                # 项目首页，提供所有功能工具的统一入口和导航界面
 ├── layout.html               # 布局页面，提供统一的页面布局和导航框架，通过iframe嵌入功能页面
 ├── tools/                    # 存放简化版功能模块，用于在layout.html中嵌入
@@ -41,6 +43,12 @@ AdiToolBox/
 
 ### DevDiary.md
 项目开发日记，详细记录每个功能的开发过程、技术实现细节、遇到的问题和解决方案，帮助团队成员了解项目进展和技术决策。
+
+### Dockerfile
+Docker镜像构建配置文件，基于nginx:alpine镜像，用于将项目打包成Docker容器。配置了静态文件目录和端口映射，实现了项目的容器化部署能力。
+
+### docker-compose.yml
+Docker Compose服务编排配置文件，定义了服务名称、构建配置、端口映射等信息。通过Docker Compose简化了项目的部署和管理过程，支持快速启动和停止服务。
 
 ### index.html
 项目首页，提供所有功能工具的统一入口和导航界面，采用响应式设计的卡片布局，便于用户快速访问各个工具。同时也为未来新增功能预留了位置，便于系统扩展。
