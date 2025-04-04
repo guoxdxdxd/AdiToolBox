@@ -12,7 +12,8 @@ AdiToolBox/
 ├── tools/                    # 存放简化版功能模块，用于在layout.html中嵌入
 │   ├── json-tools.html       # JSON工具模块，提供JSON序列化、压缩、转义和去除转义等功能，设计为在layout.html框架中嵌入使用。集成了jsoneditor组件，支持JSON的树形结构展示、节点折叠/展开、代码编辑等高级功能。包含文本编辑器行号显示功能，提升代码阅读体验，不包含重复的标题栏和导航菜单
 │   ├── string-diff.html      # 字符串差异对比工具模块，提供文本差异对比功能
-│   └── cron-generator.html   # Cron表达式生成器模块，支持7位长度cron表达式，提供可视化配置界面
+│   ├── cron-generator.html   # Cron表达式生成器模块，支持7位长度cron表达式，提供可视化配置界面
+│   └── password-generator.html # 密码生成器模块，提供随机密码生成、强度评估和一键复制功能
 ├── assets/                   # 存放静态资源文件
 │   ├── css/                  # 样式文件目录
 │   │   ├── common.css        # 通用样式文件，定义全局样式变量和共享组件样式
@@ -21,6 +22,7 @@ AdiToolBox/
 │   │   ├── string-diff2.css  # 字符串差异对比工具V2的样式表，使用CSS变量实现主题定制
 │   │   ├── cron-generator4.css # Cron表达式生成器第四版的样式文件，使用现代界面设计
 │   │   ├── cron-generator5.css # Cron表达式生成器第五版的样式文件，采用Grid布局设计
+│   │   ├── password-generator.css # 密码生成器的样式文件，定义了密码生成器的界面布局和交互效果
 │   │   └── nav-menu.css      # 导航菜单的样式文件，提供固定定位的下拉菜单效果
 │   ├── js/                   # JavaScript文件目录
 │   │   ├── index.js          # 首页的JavaScript实现，提供工具导航和交互功能
@@ -28,6 +30,7 @@ AdiToolBox/
 │   │   ├── string-diff2.js   # 字符串差异对比工具V2的核心JavaScript实现
 │   │   ├── cron-generator4.js # Cron表达式生成器第四版的JavaScript实现
 │   │   ├── cron-generator5.js # Cron表达式生成器第五版的JavaScript实现
+│   │   ├── password-generator.js # 密码生成器的JavaScript实现，包含密码生成、强度评估和复制功能
 │   │   └── nav-menu.js       # 导航菜单的JavaScript实现
 │   └── lib/                  # 第三方库目录
 └── .cursor/                  # Cursor IDE配置目录
@@ -65,6 +68,9 @@ JSON工具模块，提供JSON序列化、压缩、转义和去除转义等功能
 ### tools/cron-generator.html
 Cron表达式生成器模块，支持7位长度cron表达式，提供可视化配置界面，设计为在layout.html框架中嵌入使用，不包含重复的标题栏和导航菜单。
 
+### tools/password-generator.html
+密码生成器模块，提供随机密码生成、密码强度评估和一键复制功能。支持自定义密码长度和字符组成，包括小写字母、大写字母、数字和特殊字符。设计为在layout.html框架中嵌入使用，不包含重复的标题栏和导航菜单。
+
 ### assets/css/common.css
 通用样式文件，定义全局样式变量和共享组件样式，确保整个应用的样式一致性和可维护性。包含颜色变量、字体设置、按钮样式等基础样式定义。
 
@@ -83,6 +89,9 @@ Cron表达式生成器第四版的样式表文件，使用更现代的界面设�
 ### assets/css/cron-generator5.css
 Cron表达式生成器第五版的样式表文件，采用Grid布局设计，支持更好的响应式体验。
 
+### assets/css/password-generator.css
+密码生成器的样式文件，定义了密码生成器的界面布局、密码强度指示器样式、选项控件样式等视觉效果。采用响应式设计，确保在不同设备上都能提供良好的用户体验。使用CSS变量保持与系统整体风格的一致性。
+
 ### assets/css/nav-menu.css
 导航菜单的样式文件，实现了固定定位的弹出式菜单，允许用户在不同功能页面间快速切换，提高用户体验和工作效率。
 
@@ -100,6 +109,9 @@ Cron表达式生成器第四版的JavaScript实现，包含Cron表达式解析�
 
 ### assets/js/cron-generator5.js
 Cron表达式生成器第五版的JavaScript实现，支持7位cron表达式的解析、生成和执行时间计算，提供更强大的执行时间预览功能。
+
+### assets/js/password-generator.js
+密码生成器的JavaScript实现文件，采用面向对象的方式实现密码生成器的核心功能。包含随机密码生成、密码强度评估算法、密码复制功能等。使用Web Crypto API确保生成的随机密码具有足够的随机性和安全性。支持实时密码强度评估和可视化展示。
 
 ### assets/js/nav-menu.js
 导航菜单的JavaScript实现，提供菜单打开关闭交互、当前页面高亮显示以及记录用户最近使用工具的功能，增强用户体验。
