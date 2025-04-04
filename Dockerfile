@@ -8,7 +8,7 @@ WORKDIR /usr/share/nginx/html
 COPY . .
 
 # 复制nginx配置文件
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # 设置适当的权限
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
@@ -16,6 +16,7 @@ RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
     chown -R nginx:nginx /etc/nginx/conf.d && \
+    chown -R nginx:nginx /etc/nginx/nginx.conf && \
     touch /var/run/nginx.pid && \
     chown -R nginx:nginx /var/run/nginx.pid
 
