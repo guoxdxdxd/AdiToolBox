@@ -118,8 +118,8 @@ const jsonHistory = {
                 <div class="history-item-preview">${record.preview}</div>
             `;
             item.addEventListener('click', () => {
-                editor.value = record.text;
-                history.push(editor.value);
+                setEditorContent(record.text);
+                showNotification('已恢复历史记录内容！');
             });
             historyList.appendChild(item);
         });
