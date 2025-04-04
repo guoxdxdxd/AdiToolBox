@@ -2,17 +2,7 @@
 const dmp = new diff_match_patch();
 
 // DOM 元素
-const elements = {
-    leftEditor: document.getElementById('leftEditor'),
-    rightEditor: document.getElementById('rightEditor'),
-    leftDiffDisplay: document.getElementById('leftDiffDisplay'),
-    rightDiffDisplay: document.getElementById('rightDiffDisplay'),
-    leftLineNumbers: document.getElementById('leftLineNumbers'),
-    rightLineNumbers: document.getElementById('rightLineNumbers'),
-    jsonModeToggle: document.getElementById('jsonMode'),
-    clearButton: document.getElementById('clearButton'),
-    swapIcon: document.getElementById('swapIcon')
-};
+let elements = null;
 
 // 状态管理
 const state = {
@@ -310,6 +300,19 @@ const eventHandlers = {
 
 // 初始化
 function init() {
+    // 初始化DOM元素
+    elements = {
+        leftEditor: document.getElementById('leftEditor'),
+        rightEditor: document.getElementById('rightEditor'),
+        leftDiffDisplay: document.getElementById('leftDiffDisplay'),
+        rightDiffDisplay: document.getElementById('rightDiffDisplay'),
+        leftLineNumbers: document.getElementById('leftLineNumbers'),
+        rightLineNumbers: document.getElementById('rightLineNumbers'),
+        jsonModeToggle: document.getElementById('jsonMode'),
+        clearButton: document.getElementById('clearButton'),
+        swapIcon: document.getElementById('swapIcon')
+    };
+
     // 检查必要的 DOM 元素
     for (const [key, element] of Object.entries(elements)) {
         if (!element) {
@@ -347,5 +350,9 @@ function init() {
     }, 3500);
 }
 
-// 启动应用
-document.addEventListener('DOMContentLoaded', init); 
+// 等待DOM加载完成后再初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+} 
