@@ -9,9 +9,9 @@ const elements = {
     rightDiffDisplay: document.getElementById('rightDiffDisplay'),
     leftLineNumbers: document.getElementById('leftLineNumbers'),
     rightLineNumbers: document.getElementById('rightLineNumbers'),
-    jsonModeToggle: document.getElementById('jsonModeToggle'),
+    jsonModeToggle: document.getElementById('jsonMode'),
     clearButton: document.getElementById('clearButton'),
-    swapButton: document.getElementById('swapButton')
+    swapIcon: document.getElementById('swapIcon')
 };
 
 // 状态管理
@@ -263,6 +263,13 @@ const eventHandlers = {
         const temp = elements.leftEditor.value;
         elements.leftEditor.value = elements.rightEditor.value;
         elements.rightEditor.value = temp;
+        
+        // 添加动画效果
+        elements.swapIcon.classList.add('rotating');
+        setTimeout(() => {
+            elements.swapIcon.classList.remove('rotating');
+        }, 500);
+        
         diffManager.update();
         notifications.show('已交换两侧内容');
     },
@@ -317,7 +324,7 @@ function init() {
     elements.leftEditor.addEventListener('scroll', eventHandlers.handleScroll);
     elements.rightEditor.addEventListener('scroll', eventHandlers.handleScroll);
     elements.clearButton.addEventListener('click', eventHandlers.handleClear);
-    elements.swapButton.addEventListener('click', eventHandlers.handleSwap);
+    elements.swapIcon.addEventListener('click', eventHandlers.handleSwap);
     elements.jsonModeToggle.addEventListener('change', eventHandlers.handleJsonModeToggle);
     document.addEventListener('keydown', eventHandlers.handleKeydown.bind(eventHandlers));
     
