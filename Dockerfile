@@ -7,6 +7,9 @@ WORKDIR /usr/share/nginx/html
 # 复制项目文件
 COPY . .
 
+# 复制nginx配置文件
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # 设置适当的权限
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html && \
