@@ -23,49 +23,86 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 处理导航菜单项点击事件
-    const menuLinks = document.querySelectorAll('.nav-menu-link[data-tool]');
-    if (menuLinks.length > 0) {
-        // 在layout.html中，处理菜单项点击导航
-        menuLinks.forEach(link => {
-            // 处理已在layout.js中实现
-        });
-    } else {
-        // 在功能页面中，标记当前页面对应的菜单项为活动状态
-        const currentPath = window.location.pathname;
-        const menuLinks = document.querySelectorAll('.nav-menu-link');
+    // 最近使用工具管理
+    const RECENT_TOOLS_KEY = 'recent_tools';
+    const MAX_RECENT_TOOLS = 3;
+
+    // 获取最近使用的工具
+    function getRecentTools() {
+        const recentTools = localStorage.getItem(RECENT_TOOLS_KEY);
+        return recentTools ? JSON.parse(recentTools) : [];
+    }
+
+    // 保存最近使用的工具
+    function saveRecentTool(tool) {
+        let recentTools = getRecentTools();
         
-        menuLinks.forEach(link => {
-            const linkPath = link.getAttribute('href');
-            // 使用endsWith检查，以支持相对路径
-            if (linkPath && currentPath.endsWith(linkPath)) {
-                link.classList.add('active');
-            }
-        });
+        // 移除已存在的相同工具
+        recentTools = recentTools.filter(t => t.id !== tool.id);
         
-        // 记录最近使用的工具
-        const toolLinks = document.querySelectorAll('.nav-menu-link:not([href="../index.html"])');
-        toolLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                const toolName = this.getAttribute('data-tool');
-                if (toolName) {
-                    // 将当前工具添加到localStorage的最近使用工具列表中
-                    try {
-                        let recentTools = JSON.parse(localStorage.getItem('recentTools')) || [];
-                        // 如果已存在，则先移除
-                        recentTools = recentTools.filter(tool => tool !== toolName);
-                        // 添加到列表最前面
-                        recentTools.unshift(toolName);
-                        // 只保留最近5个
-                        if (recentTools.length > 5) {
-                            recentTools = recentTools.slice(0, 5);
-                        }
-                        localStorage.setItem('recentTools', JSON.stringify(recentTools));
-                    } catch (e) {
-                        console.error('Error saving recent tools:', e);
-                    }
-                }
-            });
+        // 添加到开头
+        recentTools.unshift(tool);
+        
+        // 限制数量
+        if (recentTools.length > MAX_RECENT_TOOLS) {
+            recentTools = recentTools.slice(0, MAX_RECENT_TOOLS);
+        }
+        
+        localStorage.setItem(RECENT_TOOLS_KEY, JSON.stringify(recentTools));
+        updateRecentToolsMenu();
+    }
+
+    // 更新最近使用工具菜单
+    function updateRecentToolsMenu() {
+        const recentTools = getRecentTools();
+        const menuContainer = document.getElementById('most-used-menu');
+        
+        if (!menuContainer) return;
+        
+        menuContainer.innerHTML = '';
+        
+        recentTools.forEach(tool => {
+            const li = document.createElement('li');
+            li.className = 'nav-menu-item';
+            li.innerHTML = `
+                <a href="#" class="nav-menu-link" data-tool="${tool.id}" data-src="${tool.src}">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="${tool.icon}" />
+                    </svg>
+                    ${tool.title}
+                </a>
+            `;
+            menuContainer.appendChild(li);
         });
     }
+
+    // 监听工具点击
+    document.querySelectorAll('.nav-menu-link[data-tool]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tool = {
+                id: this.dataset.tool,
+                src: this.dataset.src,
+                title: this.textContent.trim(),
+                icon: this.querySelector('svg path').getAttribute('d')
+            };
+            saveRecentTool(tool);
+            
+            // 加载工具
+            const contentFrame = document.getElementById('content-frame');
+            if (contentFrame) {
+                contentFrame.src = tool.src;
+            }
+            
+            // 更新活动状态
+            document.querySelectorAll('.nav-menu-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            
+            // 关闭菜单
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // 初始化最近使用工具菜单
+    updateRecentToolsMenu();
 }); 
