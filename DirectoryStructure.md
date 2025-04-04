@@ -13,6 +13,11 @@ AdiToolBox/
 │   ├── json-tools.html       # JSON工具模块，提供JSON序列化、压缩、转义和去除转义等功能，设计为在layout.html框架中嵌入使用。集成了jsoneditor组件，支持JSON的树形结构展示、节点折叠/展开、代码编辑等高级功能。包含文本编辑器行号显示功能，提升代码阅读体验，不包含重复的标题栏和导航菜单
 │   ├── string-diff.html      # 字符串差异对比工具模块，提供文本差异对比功能
 │   ├── cron-generator.html   # Cron表达式生成器模块，支持7位长度cron表达式，提供可视化配置界面
+│   ├── password-generator.html # 密码生成器模块，提供随机密码生成、强度评估和一键复制功能
+│   └── form-json.html        # Form与JSON转换工具模块，支持Form格式与JSON格式的双向转换，包含数组格式支持，集成jsoneditor组件提供JSON编辑功能
+│   └── json-tools.html       # JSON工具模块，提供JSON序列化、压缩、转义和去除转义等功能，设计为在layout.html框架中嵌入使用。集成了jsoneditor组件，支持JSON的树形结构展示、节点折叠/展开、代码编辑等高级功能。包含文本编辑器行号显示功能，提升代码阅读体验，不包含重复的标题栏和导航菜单
+│   └── string-diff.html      # 字符串差异对比工具模块，提供文本差异对比功能
+│   └── cron-generator.html   # Cron表达式生成器模块，支持7位长度cron表达式，提供可视化配置界面
 │   └── password-generator.html # 密码生成器模块，提供随机密码生成、强度评估和一键复制功能
 ├── assets/                   # 存放静态资源文件
 │   ├── css/                  # 样式文件目录
@@ -70,6 +75,9 @@ Cron表达式生成器模块，支持7位长度cron表达式，提供可视化�
 
 ### tools/password-generator.html
 密码生成器模块，提供随机密码生成、密码强度评估和一键复制功能。支持自定义密码长度和字符组成，包括小写字母、大写字母、数字和特殊字符。设计为在layout.html框架中嵌入使用，不包含重复的标题栏和导航菜单。
+
+### tools/form-json.html
+Form与JSON转换工具模块，提供Form格式与JSON格式的双向转换功能。左侧使用简单文本编辑器展示Form格式（key:value格式），右侧集成jsoneditor组件展示JSON格式。支持数组格式的转换（使用key[0]、key[1]的形式），提供格式化、清空等功能。包含简单示例和数组示例，帮助用户快速上手。设计为在layout.html框架中嵌入使用，不包含重复的标题栏和导航菜单。
 
 ### assets/css/common.css
 通用样式文件，定义全局样式变量和共享组件样式，确保整个应用的样式一致性和可维护性。包含颜色变量、字体设置、按钮样式等基础样式定义。
