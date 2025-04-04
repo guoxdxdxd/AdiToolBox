@@ -53,95 +53,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 工具使用记录管理
-    const toolUsageManager = {
-        // 获取工具使用记录
-        getToolUsage() {
-            const usage = localStorage.getItem('toolUsage');
-            return usage ? JSON.parse(usage) : {};
-        },
+    // 更新最常使用section
+    function updateMostUsedSection() {
+        const mostUsedGrid = document.getElementById('most-used-grid');
+        if (!mostUsedGrid) return;
 
-        // 记录工具使用
-        recordToolUsage(toolId) {
-            const usage = this.getToolUsage();
-            usage[toolId] = Date.now();
-            localStorage.setItem('toolUsage', JSON.stringify(usage));
-            this.updateMostUsedSection();
-        },
+        const mostUsedTools = window.toolUsageManager.getMostUsedTools();
+        if (mostUsedTools.length === 0) {
+            mostUsedGrid.innerHTML = '<div class="empty-state">暂无使用记录</div>';
+            return;
+        }
 
-        // 获取最常用工具列表
-        getMostUsedTools() {
-            const usage = this.getToolUsage();
-            return Object.entries(usage)
-                .sort(([, a], [, b]) => b - a) // 按时间戳倒序排序
-                .map(([toolId]) => toolId);
-        },
+        // 清空现有内容
+        mostUsedGrid.innerHTML = '';
 
-        // 更新最常使用section
-        updateMostUsedSection() {
-            const mostUsedGrid = document.getElementById('most-used-grid');
-            if (!mostUsedGrid) return;
+        // 获取所有工具卡片
+        const allToolCards = document.querySelectorAll('.tool-card');
+        const toolCards = Array.from(allToolCards).filter(card => {
+            const button = card.querySelector('.tool-button');
+            return button && !button.classList.contains('disabled');
+        });
 
-            const mostUsedTools = this.getMostUsedTools();
-            if (mostUsedTools.length === 0) {
-                mostUsedGrid.innerHTML = '<div class="empty-state">暂无使用记录</div>';
-                return;
-            }
-
-            // 清空现有内容
-            mostUsedGrid.innerHTML = '';
-
-            // 获取所有工具卡片
-            const allToolCards = document.querySelectorAll('.tool-card');
-            const toolCards = Array.from(allToolCards).filter(card => {
-                const button = card.querySelector('.tool-button');
-                return button && !button.classList.contains('disabled');
+        // 添加最常用的工具卡片
+        mostUsedTools.forEach(toolId => {
+            const originalCard = Array.from(toolCards).find(card => {
+                const link = card.querySelector('.tool-button');
+                return link && link.getAttribute('href') && 
+                       link.getAttribute('href').includes(toolId);
             });
 
-            // 添加最常用的工具卡片（最多显示3个）
-            mostUsedTools.slice(0, 3).forEach(toolId => {
-                const originalCard = Array.from(toolCards).find(card => {
-                    const link = card.querySelector('.tool-button');
-                    return link && link.getAttribute('href') && 
-                           link.getAttribute('href').includes(toolId);
-                });
-
-                if (originalCard) {
-                    // 克隆卡片并添加到最常用区域
-                    const clonedCard = originalCard.cloneNode(true);
-                    
-                    // 添加最后使用时间
-                    const usage = this.getToolUsage();
-                    const lastUsed = new Date(usage[toolId]);
+            if (originalCard) {
+                // 克隆卡片并添加到最常用区域
+                const clonedCard = originalCard.cloneNode(true);
+                
+                // 添加最后使用时间
+                const lastUsed = window.toolUsageManager.getLastUsedTime(toolId);
+                if (lastUsed) {
                     const timeLabel = document.createElement('div');
                     timeLabel.className = 'last-used-time';
-                    timeLabel.textContent = `最后使用: ${this.formatDate(lastUsed)}`;
+                    timeLabel.textContent = `最后使用: ${lastUsed}`;
                     clonedCard.querySelector('.tool-content').appendChild(timeLabel);
-
-                    mostUsedGrid.appendChild(clonedCard);
                 }
-            });
-        },
 
-        // 格式化日期
-        formatDate(date) {
-            const now = new Date();
-            const diff = now - date;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor(diff / (1000 * 60));
-
-            if (days > 0) {
-                return `${days}天前`;
-            } else if (hours > 0) {
-                return `${hours}小时前`;
-            } else if (minutes > 0) {
-                return `${minutes}分钟前`;
-            } else {
-                return '刚刚';
+                mostUsedGrid.appendChild(clonedCard);
             }
-        }
-    };
+        });
+    }
 
     // 为所有工具按钮添加点击事件
     toolLinks.forEach(link => {
@@ -149,13 +106,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (this.getAttribute('href')) {
                 const href = this.getAttribute('href');
                 const toolId = href.includes('?tool=') ? href.split('?tool=')[1] : href;
-                toolUsageManager.recordToolUsage(toolId);
+                window.toolUsageManager.recordToolUsage(toolId);
             }
         });
     });
 
+    // 监听工具使用记录更新事件
+    window.addEventListener('toolUsageUpdated', updateMostUsedSection);
+
     // 初始化最常使用section
-    toolUsageManager.updateMostUsedSection();
+    updateMostUsedSection();
 
     // 添加空状态样式
     const style = document.createElement('style');

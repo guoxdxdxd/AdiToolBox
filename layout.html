@@ -97,6 +97,14 @@
                         <span class="category-title">基础工具</span>
                         <ul class="category-list">
                             <li class="nav-menu-item">
+                                <a href="#" class="nav-menu-link" data-tool="json-tools" data-src="./tools/json-tools.html">
+                                    <svg viewBox="0 0 24 24" width="18" height="18">
+                                        <path fill="currentColor" d="M5,3H7V5H5V10A2,2 0 0,1 3,12A2,2 0 0,1 5,14V19H7V21H5C3.93,20.73 3,20.1 3,19V15A2,2 0 0,0 1,13H0V11H1A2,2 0 0,0 3,9V5A2,2 0 0,1 5,3M19,3A2,2 0 0,1 21,5V9A2,2 0 0,0 23,11H24V13H23A2,2 0 0,0 21,15V19A2,2 0 0,1 19,21H17V19H19V14A2,2 0 0,1 21,12A2,2 0 0,1 19,10V5H17V3H19M12,15A1,1 0 0,1 13,16A1,1 0 0,1 12,17A1,1 0 0,1 11,16A1,1 0 0,1 12,15M8,15A1,1 0 0,1 9,16A1,1 0 0,1 8,17A1,1 0 0,1 7,16A1,1 0 0,1 8,15M16,15A1,1 0 0,1 17,16A1,1 0 0,1 16,17A1,1 0 0,1 15,16A1,1 0 0,1 16,15Z" />
+                                    </svg>
+                                    JSON工具
+                                </a>
+                            </li>
+                            <li class="nav-menu-item">
                                 <a href="#" class="nav-menu-link" data-tool="string-diff" data-src="./tools/string-diff.html">
                                     <svg viewBox="0 0 24 24" width="18" height="18">
                                         <path fill="currentColor" d="M19.5,3.09L15,7.59V4H13V11H20V9H16.41L20.91,4.5L19.5,3.09M4,13V15H7.59L3.09,19.5L4.5,20.91L9,16.41V20H11V13H4Z" />
@@ -149,6 +157,7 @@
         </div>
     </div>
 
+    <script src="./assets/js/tool-usage.js"></script>
     <script src="./assets/js/nav-menu.js"></script>
     <script>
         // 页面工具信息配置
@@ -247,27 +256,64 @@
                 // 更新URL，不刷新页面
                 history.pushState({toolId}, '', `?tool=${toolId}`);
                 loadTool(toolId);
+                // 记录工具使用
+                if (window.toolUsageManager) {
+                    window.toolUsageManager.recordToolUsage(toolId);
+                }
                 // 关闭导航菜单
                 document.querySelector('.nav-menu').classList.remove('active');
             });
         });
         
         // 初始化加载
-        window.addEventListener('DOMContentLoaded', () => {
+        function initializePage() {
             const toolId = getUrlParam('tool');
             if (toolId && toolsInfo[toolId]) {
                 loadTool(toolId);
+                // 记录工具使用
+                if (window.toolUsageManager) {
+                    window.toolUsageManager.recordToolUsage(toolId);
+                }
             } else {
                 // 默认显示首页或者重定向到首页
                 window.location.href = './index.html';
             }
+        }
+
+        // 等待所有脚本加载完成
+        Promise.all([
+            new Promise(resolve => {
+                if (window.toolUsageManager) {
+                    resolve();
+                } else {
+                    const checkInterval = setInterval(() => {
+                        if (window.toolUsageManager) {
+                            clearInterval(checkInterval);
+                            resolve();
+                        }
+                    }, 100);
+                }
+            }),
+            new Promise(resolve => {
+                if (document.readyState === 'complete') {
+                    resolve();
+                } else {
+                    window.addEventListener('load', resolve);
+                }
+            })
+        ]).then(() => {
+            initializePage();
         });
         
         // 处理浏览器前进/后退按钮
-        window.addEventListener('popstate', (event) => {
-            const toolId = getUrlParam('tool');
+        window.addEventListener('popstate', function(event) {
+            const toolId = event.state ? event.state.toolId : null;
             if (toolId && toolsInfo[toolId]) {
                 loadTool(toolId);
+                // 记录工具使用
+                if (window.toolUsageManager) {
+                    window.toolUsageManager.recordToolUsage(toolId);
+                }
             } else {
                 window.location.href = './index.html';
             }
