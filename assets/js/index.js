@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 background-color: #28a745;
                                 color: white;
                                 padding: 2px 8px;
-                                border-radius: 12px;
+                                border-radius: 4px;
                                 margin-left: 10px;
                                 font-weight: normal;
                             }
