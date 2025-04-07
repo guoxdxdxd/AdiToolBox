@@ -1,0 +1,3480 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Invoice接口文档",
+    "description": "齐心Invoice接口服务。",
+    "contact": {
+      "name": "Comix"
+    },
+    "license": {
+      "name": "Apache-2.0",
+      "url": "https://gitee.com/dotnetchina/Furion/blob/rc1/LICENSE"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/DownloadPage/QRCode": {
+      "post": {
+        "tags": [
+          "DownloadPage"
+        ],
+        "summary": "获取发票二维码",
+        "operationId": "api-DownloadPage-QRCode-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvoiceQRCode"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvoiceQRCode"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvoiceQRCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/DownloadPage/Detail": {
+      "post": {
+        "tags": [
+          "DownloadPage"
+        ],
+        "summary": "获取发票详情",
+        "operationId": "api-DownloadPage-Detail-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqInvoiceDetail"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqInvoiceDetail"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqInvoiceDetail"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqInvoiceDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvoiceDetail"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvoiceDetail"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvoiceDetail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetDetailsBySapBillNoWithout1100": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "根据40单号获取发票详细信息",
+        "operationId": "api-Invoice-GetDetailsBySapBillNoWithout1100-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetDetailsBySapBillNo": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "根据40单号获取发票详细信息",
+        "operationId": "api-Invoice-GetDetailsBySapBillNo-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetByInvoiceNoAndSourceBillNo": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "获取发票",
+        "operationId": "api-Invoice-GetByInvoiceNoAndSourceBillNo-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_NumberCodeSourceBillNo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_NumberCodeSourceBillNo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_NumberCodeSourceBillNo"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_NumberCodeSourceBillNo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetDetailsForCop": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "Cop获取发票详细信息",
+        "operationId": "api-Invoice-GetDetailsForCop-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqGetDetailForCop"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqGetDetailForCop"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqGetDetailForCop"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqGetDetailForCop"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/DetailsByPxOrderId": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "Cop获取发票详细信息",
+        "description": "<div>要使用DetailsByCustomerPxOrderId，加上客编更准确</div>",
+        "operationId": "api-Invoice-DetailsByPxOrderId-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/Invoice/DetailsByCustomerPxOrderId": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "获取发票详细信息",
+        "operationId": "api-Invoice-DetailsByCustomerPxOrderId-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_CustomerPxOrderId"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_CustomerPxOrderId"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_CustomerPxOrderId"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_CustomerPxOrderId"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/DetailsByNumber": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "Cop获取发票详细信息\r\n            \r\n仅发票头，没有发票明细",
+        "operationId": "api-Invoice-DetailsByNumber-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/DetailsBySourceBillNo": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "根据订单号获取发票详细信息",
+        "operationId": "api-Invoice-DetailsBySourceBillNo-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/DetailsByNumberCode": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "获取发票详细信息",
+        "operationId": "api-Invoice-DetailsByNumberCode-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_InvoiceNumberCode"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_InvoiceNumberCode"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_InvoiceNumberCode"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_InvoiceNumberCode"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/InvoiceDetail/GetsByTime": {
+      "post": {
+        "tags": [
+          "InvoiceDetail"
+        ],
+        "summary": "根据时间获取发票详细信息",
+        "operationId": "api-InvoiceDetail-GetsByTime-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqDetailByTime"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqDetailByTime"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqDetailByTime"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqDetailByTime"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_PageDto_InvocieDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_PageDto_InvocieDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_PageDto_InvocieDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetInvoiceTypeBySourceBillNo": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "获取发票类型",
+        "operationId": "api-Invoice-GetInvoiceTypeBySourceBillNo-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceTypeDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceTypeDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceTypeDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetFor10086": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "为移动结算单获取发票详细",
+        "operationId": "api-Invoice-GetFor10086-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceFor10086"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceFor10086"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceFor10086"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/SyncDaBenEInvoice": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "同步电子发票",
+        "operationId": "api-Invoice-SyncDaBenEInvoice-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_Boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_Boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_Boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/SyncDaBenInvoice": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "同步纸质发票",
+        "operationId": "api-Invoice-SyncDaBenInvoice-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_Boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_Boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_Boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetAmountByInvoiceNo": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "获取发票金额",
+        "operationId": "api-Invoice-GetAmountByInvoiceNo-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceAmountDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceAmountDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceAmountDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/RelevanceOnlineOrder": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "关联发票",
+        "operationId": "api-Invoice-RelevanceOnlineOrder-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_RelevanceOnlineOrderDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_RelevanceOnlineOrderDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_RelevanceOnlineOrderDto"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_RelevanceOnlineOrderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceNumberCode"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceNumberCode"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceNumberCode"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetByInvoiceNoOrSapBillNo": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "获取发票",
+        "operationId": "api-Invoice-GetByInvoiceNoOrSapBillNo-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_NumberCodeSapBillNoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_NumberCodeSapBillNoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_NumberCodeSapBillNoDto"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_NumberCodeSapBillNoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_RespGetByInvoiceNoOrSapBillNoDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_RespGetByInvoiceNoOrSapBillNoDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_RespGetByInvoiceNoOrSapBillNoDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/ExistSourceBillNo": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "判断订单号是否存在发票",
+        "operationId": "api-Invoice-ExistSourceBillNo-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_String"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_String"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/ExistInvoiceNumber": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "判断发票号是否存在发票",
+        "operationId": "api-Invoice-ExistInvoiceNumber-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_String"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_String"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_String"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetForOld": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "获取发票\r\n适应老得发票实体",
+        "operationId": "api-Invoice-GetForOld-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_OrderCodeAndNumberCode"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_OrderCodeAndNumberCode"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_OrderCodeAndNumberCode"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_OrderCodeAndNumberCode"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceForOld"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceForOld"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceForOld"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetForOldBySourceBillNo": {
+      "post": {
+        "tags": [
+          "Invoice"
+        ],
+        "summary": "获取发票\r\n适应老得发票实体",
+        "operationId": "api-Invoice-GetForOldBySourceBillNo-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceForOld"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceForOld"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceForOld"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/OrderFileUrls": {
+      "post": {
+        "tags": [
+          "InvoiceUrl"
+        ],
+        "summary": "获取订单的发票下载地址",
+        "operationId": "api-Invoice-OrderFileUrls-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqOrderFileUrlDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqOrderFileUrlDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqOrderFileUrlDto"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_ReqOrderFileUrlDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_OrderFileUrlDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_OrderFileUrlDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_OrderFileUrlDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetFileUrl": {
+      "post": {
+        "tags": [
+          "InvoiceUrl"
+        ],
+        "summary": "获取发票下载地址",
+        "operationId": "api-Invoice-GetFileUrl-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_ReqInvoiceFileUrlDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_ReqInvoiceFileUrlDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_ReqInvoiceFileUrlDto"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_ReqInvoiceFileUrlDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceFileUrlDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceFileUrlDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_InvoiceFileUrlDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetFileUrlByPxOrderId": {
+      "post": {
+        "tags": [
+          "InvoiceUrl"
+        ],
+        "summary": "获取发票下载地址",
+        "operationId": "api-Invoice-GetFileUrlByPxOrderId-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_PxOrderIdFileUrlDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_PxOrderIdFileUrlDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_PxOrderIdFileUrlDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Invoice/GetDownload": {
+      "post": {
+        "tags": [
+          "InvoiceUrl"
+        ],
+        "summary": "获取下载的电子发票实体",
+        "operationId": "api-Invoice-GetDownload-Post",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ComixBaseRequestDto_List_String"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_DownloadInvoiceDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_DownloadInvoiceDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComixBaseResponseDto_List_DownloadInvoiceDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ComixBaseRequestDto_List_CustomerPxOrderId": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerPxOrderId"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_List_InvoiceNumberCode": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceNumberCode"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_List_ReqInvoiceFileUrlDto": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReqInvoiceFileUrlDto"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_List_String": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_NumberCodeSapBillNoDto": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/NumberCodeSapBillNoDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_NumberCodeSourceBillNo": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/NumberCodeSourceBillNo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_OrderCodeAndNumberCode": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/OrderCodeAndNumberCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_RelevanceOnlineOrderDto": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/RelevanceOnlineOrderDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_ReqDetailByTime": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/ReqDetailByTime"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_ReqGetDetailForCop": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/ReqGetDetailForCop"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_ReqInvoiceDetail": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/ReqInvoiceDetail"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_ReqOrderFileUrlDto": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/ReqOrderFileUrlDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseRequestDto_String": {
+        "required": [
+          "MsgBody"
+        ],
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/RequestHeader"
+          },
+          "MsgBody": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_Boolean": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_InvocieDetailDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/InvocieDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_InvoiceDetail": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/InvoiceDetail"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_InvoiceQRCode": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/InvoiceQRCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_DownloadInvoiceDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DownloadInvoiceDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_InvocieDetailDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvocieDetailDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_InvoiceAmountDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceAmountDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_InvoiceFileUrlDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceFileUrlDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_InvoiceFor10086": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceFor10086"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_InvoiceForOld": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceForOld"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_InvoiceNumberCode": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceNumberCode"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_InvoiceTypeDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceTypeDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_OrderFileUrlDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderFileUrlDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_PxOrderIdFileUrlDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PxOrderIdFileUrlDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_RespGetByInvoiceNoOrSapBillNoDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RespGetByInvoiceNoOrSapBillNoDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_List_String": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComixBaseResponseDto_PageDto_InvocieDetailDto": {
+        "type": "object",
+        "properties": {
+          "MsgHeader": {
+            "$ref": "#/components/schemas/ResponseHeader"
+          },
+          "MsgBody": {
+            "$ref": "#/components/schemas/PageDto_InvocieDetailDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomerPxOrderId": {
+        "type": "object",
+        "properties": {
+          "CustomerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "PxOrderId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DaBenBillingState": {
+        "enum": [
+          "Created",
+          "Submitted",
+          "BlueInvoice",
+          "RedInvoice",
+          "Abandoned",
+          "OffsetRed",
+          "Ls"
+        ],
+        "type": "string",
+        "description": "<br />&nbsp;未提交 Created = 0<br />&nbsp;已提交 Submitted = 1<br />&nbsp;蓝票 BlueInvoice = 2<br />&nbsp;红票 RedInvoice = 3<br />&nbsp;作废 Abandoned = 4<br />&nbsp;冲红 OffsetRed = 5<br />&nbsp;异常 Ls = 999<br />"
+      },
+      "DaBenInvoiceStatus": {
+        "enum": [
+          "UnBilled",
+          "BillingIn",
+          "BillingSuccess",
+          "BillingFailure"
+        ],
+        "type": "string",
+        "description": "<br />&nbsp;未开票 UnBilled = 0<br />&nbsp;开票中 BillingIn = 1<br />&nbsp;开票成功 BillingSuccess = 2<br />&nbsp;开票失败 BillingFailure = 3<br />"
+      },
+      "DaBenInvoiceType": {
+        "enum": [
+          "SpecialTicket",
+          "OrdinaryTickets",
+          "SDP_SpecialTicket",
+          "SDP_OrdinaryTickets",
+          "ElectronicOrdinaryTickets",
+          "Non"
+        ],
+        "type": "string",
+        "description": "大贲的发票类型<br />&nbsp;专票 SpecialTicket = 0<br />&nbsp;普票 OrdinaryTickets = 1<br />&nbsp;数电票-专票 SDP_SpecialTicket = 31<br />&nbsp;数电票-普票 SDP_OrdinaryTickets = 32<br />&nbsp;电子普通发票 ElectronicOrdinaryTickets = 51<br />&nbsp;异常 Non = -1<br />"
+      },
+      "DaBenSourceSystem": {
+        "enum": [
+          "SAPPaper",
+          "SAPElectronics",
+          "ExcelPaper",
+          "ExcelElectronics",
+          "ManualBackFill",
+          "ManualCorrelation",
+          "ManualCancellation",
+          "BCSJ",
+          "ZDHX",
+          "Err"
+        ],
+        "type": "string",
+        "description": "<br />&nbsp;SAP SAPPaper = 0<br />&nbsp;SAP SAPElectronics = 1<br />&nbsp;手工Excel ExcelPaper = 2<br />&nbsp;手工Excel ExcelElectronics = 3<br />&nbsp;标记已开 ManualBackFill = 4<br />&nbsp;手动关联 ManualCorrelation = 5<br />&nbsp;手工核销 ManualCancellation = 6<br />&nbsp;手工补充 BCSJ = 7<br />&nbsp;自动核销 ZDHX = 8<br />&nbsp;异常 Err = -1<br />"
+      },
+      "DownloadInvoiceDto": {
+        "type": "object",
+        "properties": {
+          "DownloadFileUrl": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OrderCode": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceNo": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceCode": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceType": {
+            "$ref": "#/components/schemas/DaBenInvoiceType"
+          },
+          "CustomerName": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "RegistionNo": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "BankAccount": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "BANK": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "ReceiveAdress": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvocieDetailDto": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "BillCode": {
+            "type": "string",
+            "description": "Desc:大贲系统流水号（类似主键）\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomerName": {
+            "type": "string",
+            "description": "Desc:购买方名称\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomerCode": {
+            "type": "string",
+            "description": "Desc:购买方编码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomerRegisterAddress": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomerTaxCode": {
+            "type": "string",
+            "description": "Desc:购买方税号\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OrgCode": {
+            "type": "string",
+            "description": "Desc:销售方税号\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OrgName": {
+            "type": "string",
+            "description": "Desc:销售方名称\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "GroupId": {
+            "type": "number",
+            "description": "Desc:组织\r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "InvoiceDate": {
+            "type": "string",
+            "description": "Desc:开票日期\r\nDefault:\r\nNullable:True",
+            "format": "date-time",
+            "nullable": true
+          },
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "Desc:发票号码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceCode": {
+            "type": "string",
+            "description": "Desc:发票代码 \r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceType": {
+            "$ref": "#/components/schemas/InvoiceType"
+          },
+          "Format": {
+            "$ref": "#/components/schemas/InvoiceFormat"
+          },
+          "Color": {
+            "$ref": "#/components/schemas/InvoiceColor"
+          },
+          "State": {
+            "$ref": "#/components/schemas/InvoiceState"
+          },
+          "Amount": {
+            "type": "number",
+            "description": "Desc:未税金额 \r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "TaxAmount": {
+            "type": "number",
+            "description": "Desc:税额 \r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "SumAmount": {
+            "type": "number",
+            "description": "Desc:价税合计 \r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "Remark": {
+            "type": "string",
+            "description": "Desc:备注\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OperationName": {
+            "type": "string",
+            "description": "Desc:开票人\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "PdfUrl": {
+            "type": "string",
+            "description": "Desc:附件-PDF\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OfdUrl": {
+            "type": "string",
+            "description": "Desc:附件-OFD\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "XmlUrl": {
+            "type": "string",
+            "description": "Desc:附件-XML\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OmsCustomerCode": {
+            "type": "string",
+            "description": "Desc:oms的商城订单关联过来的客户编码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "PaymentCustCode": {
+            "type": "string",
+            "description": "付款方编码",
+            "nullable": true
+          },
+          "PaymentCustName": {
+            "type": "string",
+            "description": "付款方名称",
+            "nullable": true
+          },
+          "InvoiceCustCode": {
+            "type": "string",
+            "description": "开票方编码",
+            "nullable": true
+          },
+          "InvoiceCustName": {
+            "type": "string",
+            "description": "开票方名称",
+            "nullable": true
+          },
+          "SettlerName": {
+            "type": "string",
+            "description": "结算人(商务)",
+            "nullable": true
+          },
+          "OriginalInvoiceNumber": {
+            "type": "string",
+            "description": "原发票号码（红票）(原蓝票代码)",
+            "nullable": true
+          },
+          "OriginalInvoiceCode": {
+            "type": "string",
+            "description": "原发票代码（红票）",
+            "nullable": true
+          },
+          "OriginalBillCode": {
+            "type": "string",
+            "description": "原发票号（红票）(原蓝票号)",
+            "nullable": true
+          },
+          "OriginalSettlerName": {
+            "type": "string",
+            "description": "原结算人(商务)",
+            "nullable": true
+          },
+          "SourceSystemName": {
+            "$ref": "#/components/schemas/DaBenSourceSystem"
+          },
+          "DaBenInvoiceType": {
+            "$ref": "#/components/schemas/DaBenInvoiceType"
+          },
+          "SettlementBillInvoiceDetailsType": {
+            "type": "string",
+            "description": "结算单发票明细的类型",
+            "nullable": true,
+            "readOnly": true
+          },
+          "DaBenBillingState": {
+            "$ref": "#/components/schemas/DaBenBillingState"
+          },
+          "SapChannelCoding": {
+            "type": "string",
+            "description": "Desc:分销渠道\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "SapChannelCodingName": {
+            "type": "string",
+            "description": "Desc:渠道名称\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "DaBenId": {
+            "type": "number",
+            "description": "Desc:大贲发票ID\r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "Werks": {
+            "type": "string",
+            "description": "Desc:工厂编码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceBillingStatus": {
+            "$ref": "#/components/schemas/DaBenInvoiceStatus"
+          },
+          "RequestNumber": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CreateDate": {
+            "type": "string",
+            "description": "创建时间",
+            "format": "date-time"
+          },
+          "UpdateDate": {
+            "type": "string",
+            "description": "更新时间",
+            "format": "date-time"
+          },
+          "Items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvocieDetailItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvocieDetailItemDto": {
+        "type": "object",
+        "properties": {
+          "InvoiceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "InvoiceRequestNumber": {
+            "type": "string",
+            "description": "Desc:发票主体ID（关联字段）\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "BillCode": {
+            "type": "string",
+            "description": "Desc:大贲系统流水号（类似主键）\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomMerchandiseName": {
+            "type": "string",
+            "description": "Desc:项目名称（对应票面项目名称）\r\nDefault:\r\nNullable:True\r\nTODO 需要确认",
+            "nullable": true
+          },
+          "MerchandiseSpecification": {
+            "type": "string",
+            "description": "Desc:商品规格\r\nDefault:\r\nNullable:True\r\nTODO 需要确认",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "description": "Desc:单位\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "UnitPrice": {
+            "type": "number",
+            "description": "Desc:未税单价\r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "TaxRate": {
+            "type": "number",
+            "description": "Desc:税率\r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "TaxAmount": {
+            "type": "number",
+            "description": "Desc:税额\r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "Amount": {
+            "type": "number",
+            "description": "未税金额",
+            "format": "double",
+            "readOnly": true
+          },
+          "SapBillNo": {
+            "type": "string",
+            "description": "SAP系统流水号\r\nOms同步",
+            "nullable": true
+          },
+          "SapOrderNo": {
+            "type": "string",
+            "description": "销售单号\r\nOms同步",
+            "nullable": true
+          },
+          "OmsOrderNo": {
+            "type": "string",
+            "description": "OMS订单号\r\nOms同步",
+            "nullable": true
+          },
+          "OmsDeliveryNo": {
+            "type": "string",
+            "description": "OMS发货单号\r\nOms同步",
+            "nullable": true
+          },
+          "PxOrderId": {
+            "type": "string",
+            "description": "客户PO号\r\nOms同步",
+            "nullable": true
+          },
+          "PoBillNo": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "SourceBillNo": {
+            "type": "string",
+            "description": "合约订单号\r\nOms同步",
+            "nullable": true
+          },
+          "SapVoucher": {
+            "type": "string",
+            "description": "Desc:开票凭证号码（SAP91凭证）\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "SapVoucherPosnr": {
+            "type": "string",
+            "description": "Desc:开票凭证行号（SAP91凭证行号）\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "IntegralAmount": {
+            "type": "number",
+            "description": "Desc:开票金额\r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "SumAmount": {
+            "type": "number",
+            "description": "Desc:价税合计\r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "MerchandiseCode": {
+            "type": "string",
+            "description": "Desc:商品编码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "MerchandiseName": {
+            "type": "string",
+            "description": "Desc:商品名称\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "SalesOrderNumber": {
+            "type": "string",
+            "description": "Desc:SAP交货单号（根据这个字段调用oms接口获取其他订单编码）\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "Werks": {
+            "type": "string",
+            "description": "Desc:工厂编码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "ParentSourceBillNo": {
+            "type": "string",
+            "description": "父合约订单号",
+            "nullable": true
+          },
+          "OmsCustomerCode": {
+            "type": "string",
+            "description": "Desc:oms的商城订单关联过来的客户编码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceAmountDto": {
+        "type": "object",
+        "properties": {
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "Desc:发票号码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "SumAmount": {
+            "type": "number",
+            "description": "Desc:价税合计 \r\nDefault:\r\nNullable:False",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceColor": {
+        "enum": [
+          "Blue",
+          "Red"
+        ],
+        "type": "string",
+        "description": "发票颜色<br />&nbsp;蓝票 Blue = 1<br />&nbsp;红票 Red = 2<br />"
+      },
+      "InvoiceDetail": {
+        "type": "object",
+        "properties": {
+          "CustomerTaxCode": {
+            "type": "string",
+            "description": "Desc:购买方税号\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomerName": {
+            "type": "string",
+            "description": "Desc:购买方名称\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "SaleTaxNumber": {
+            "type": "string",
+            "description": "Desc:销售方税号\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OrgName": {
+            "type": "string",
+            "description": "Desc:销售方名称\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "Desc:发票号码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceDate": {
+            "type": "string",
+            "description": "Desc:开票日期\r\nDefault:\r\nNullable:True",
+            "format": "date-time",
+            "nullable": true
+          },
+          "SumAmount": {
+            "type": "number",
+            "description": "Desc:价税合计 \r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "Format": {
+            "$ref": "#/components/schemas/InvoiceFormat"
+          },
+          "FormatName": {
+            "type": "string",
+            "description": "发票形式",
+            "nullable": true,
+            "readOnly": true
+          },
+          "InvoiceType": {
+            "$ref": "#/components/schemas/InvoiceType"
+          },
+          "InvoiceTypeName": {
+            "type": "string",
+            "description": "发票类型",
+            "nullable": true,
+            "readOnly": true
+          },
+          "PdfUrl": {
+            "type": "string",
+            "description": "Desc:附件-PDF\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OfdUrl": {
+            "type": "string",
+            "description": "Desc:附件-OFD\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "XmlUrl": {
+            "type": "string",
+            "description": "Desc:附件-XML\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceFileUrlDto": {
+        "type": "object",
+        "properties": {
+          "InvoiceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "InvoiceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "FileUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceFor10086": {
+        "type": "object",
+        "properties": {
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "Desc:发票号码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceDate": {
+            "type": "string",
+            "description": "Desc:开票日期\r\nDefault:\r\nNullable:True",
+            "format": "date-time",
+            "nullable": true
+          },
+          "CreatedDate": {
+            "type": "string",
+            "description": "创建时间",
+            "format": "date-time"
+          },
+          "DownloadFileUrl": {
+            "type": "string",
+            "description": "Desc:附件-PDF\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceForOld": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "description": "Desc:\r\nDefault:\r\nNullable:False",
+            "format": "int32"
+          },
+          "Guid": {
+            "type": "string",
+            "nullable": true
+          },
+          "InvoiceSerialNo": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:False",
+            "nullable": true
+          },
+          "InvoiceDocument": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceDate": {
+            "type": "string",
+            "description": "Desc:发票日期\r\nDefault:\r\nNullable:True",
+            "nullable": true,
+            "readOnly": true
+          },
+          "InvoiceDate2": {
+            "type": "string",
+            "description": "发票时间",
+            "format": "date-time",
+            "nullable": true
+          },
+          "InvoiceNo": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceCode": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "BlueNo": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "BlueCode": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceSource": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceType": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceState": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "PriceAmount": {
+            "type": "number",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "format": "double"
+          },
+          "TaxAmount": {
+            "type": "number",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "format": "double"
+          },
+          "TotalAmount": {
+            "type": "number",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "format": "double"
+          },
+          "InvoiceCreateBy": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceCreateDate": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true,
+            "readOnly": true
+          },
+          "InputTime": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true,
+            "readOnly": true
+          },
+          "DownloadFileUrl": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomerCode": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomerName": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "RegistionNo": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "ReceiveAdress": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "ReceiveTel": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "BANK": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "BankAccount": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "REMARK": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:False",
+            "nullable": true
+          },
+          "DeliveryOrder": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "PxOrderId": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OrderCode": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceStatus": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CreatedBy": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CreatedDate": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "format": "date-time"
+          },
+          "LastModifiedBy": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "LastModifiedDate": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:True",
+            "format": "date-time"
+          },
+          "Items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceItemForOld"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "发票数据适应旧的发票实体"
+      },
+      "InvoiceFormat": {
+        "enum": [
+          "Paper",
+          "FullElectronic",
+          "DigitalElectronic",
+          "Err"
+        ],
+        "type": "string",
+        "description": "发票形式<br />&nbsp;纸票 Paper = 1<br />&nbsp;全电票 FullElectronic = 2<br />&nbsp;数电票 DigitalElectronic = 3<br />&nbsp;异常 Err = -1<br />"
+      },
+      "InvoiceItemForOld": {
+        "type": "object",
+        "properties": {
+          "ID": {
+            "type": "integer",
+            "description": "Desc:主键\r\nDefault:\r\nNullable:False",
+            "format": "int32"
+          },
+          "Guid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "InvoiceSerialNo": {
+            "type": "string",
+            "description": "Desc:发票编码\r\nDefault:\r\nNullable:False",
+            "nullable": true
+          },
+          "InvoiceDocument": {
+            "type": "string",
+            "description": "Desc:发票文件\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceItem": {
+            "type": "string",
+            "description": "Desc:发票明细\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "MaterialNo": {
+            "type": "string",
+            "description": "Desc:物料编码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceNum": {
+            "type": "integer",
+            "description": "Desc:发票序号\r\nDefault:\r\nNullable:True",
+            "format": "int32"
+          },
+          "UNIT": {
+            "type": "string",
+            "description": "Desc:单位\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "UnitPrice": {
+            "type": "number",
+            "description": "Desc:单价\r\nDefault:\r\nNullable:True",
+            "format": "double"
+          },
+          "PriceAmount": {
+            "type": "number",
+            "description": "Desc:开票金额\r\nDefault:\r\nNullable:True",
+            "format": "double"
+          },
+          "TaxAmount": {
+            "type": "number",
+            "description": "Desc:税金\r\nDefault:\r\nNullable:True",
+            "format": "double"
+          },
+          "TotalAmount": {
+            "type": "number",
+            "description": "Desc:总金额\r\nDefault:\r\nNullable:True",
+            "format": "double"
+          },
+          "TaxRate": {
+            "type": "number",
+            "description": "Desc:税率\r\nDefault:\r\nNullable:True",
+            "format": "double"
+          },
+          "ItemType": {
+            "type": "string",
+            "description": "Desc:项目类型\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "DeliveryOrder": {
+            "type": "string",
+            "description": "Desc:发货单号\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "DeliveryOrderItem": {
+            "type": "string",
+            "description": "Desc:明细编号\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "PxOrderId": {
+            "type": "string",
+            "description": "Desc:第三方订单号\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "OrderCode": {
+            "type": "string",
+            "description": "Desc:订单号\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "REMARK": {
+            "type": "string",
+            "description": "Desc:\r\nDefault:\r\nNullable:False",
+            "nullable": true
+          },
+          "CreatedBy": {
+            "type": "string",
+            "description": "Desc:创建人\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CreatedDate": {
+            "type": "string",
+            "description": "Desc:创建时间\r\nDefault:\r\nNullable:True",
+            "format": "date-time"
+          },
+          "LastModifiedBy": {
+            "type": "string",
+            "description": "Desc:修改人\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "LastModifiedDate": {
+            "type": "string",
+            "description": "Desc:修改时间\r\nDefault:\r\nNullable:True",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceNumberCode": {
+        "type": "object",
+        "properties": {
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "Desc:发票号码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "InvoiceCode": {
+            "type": "string",
+            "description": "Desc:发票代码 \r\nDefault:\r\nNullable:True",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InvoiceQRCode": {
+        "type": "object",
+        "properties": {
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "Desc:发票号码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "CustomerName": {
+            "type": "string",
+            "description": "Desc:购买方名称\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          },
+          "SumAmount": {
+            "type": "number",
+            "description": "Desc:价税合计 \r\nDefault:\r\nNullable:False",
+            "format": "double"
+          },
+          "QRCode": {
+            "type": "string",
+            "description": "二维码",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "发票二维码"
+      },
+      "InvoiceState": {
+        "enum": [
+          "Normal",
+          "Abandoned",
+          "OffsetRed",
+          "Err"
+        ],
+        "type": "string",
+        "description": "<br />&nbsp;正常 Normal = 1<br />&nbsp;作废 Abandoned = 2<br />&nbsp;冲红 OffsetRed = 3<br />&nbsp;异常 Err = -1<br />"
+      },
+      "InvoiceType": {
+        "enum": [
+          "SpecialTicket",
+          "OrdinaryTicket",
+          "Err"
+        ],
+        "type": "string",
+        "description": "发票服务的发票类型<br />&nbsp;专票 SpecialTicket = 1<br />&nbsp;普票 OrdinaryTicket = 2<br />&nbsp;异常 Err = -1<br />"
+      },
+      "InvoiceTypeDto": {
+        "type": "object",
+        "properties": {
+          "OrderCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "InvoiceTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DaBenInvoiceType"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NumberCodeSapBillNoDto": {
+        "type": "object",
+        "properties": {
+          "SapBillNo": {
+            "type": "string",
+            "description": "销售单号",
+            "nullable": true
+          },
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "发票号码",
+            "nullable": true
+          },
+          "InvoiceCode": {
+            "type": "string",
+            "description": "发票代码",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NumberCodeSourceBillNo": {
+        "type": "object",
+        "properties": {
+          "SourceBillNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "InvoiceNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "InvoiceCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderCodeAndNumberCode": {
+        "type": "object",
+        "properties": {
+          "SourceBillNo": {
+            "type": "string",
+            "description": "合约订单号\r\nOms同步",
+            "nullable": true
+          },
+          "OmsCustomerCode": {
+            "type": "string",
+            "description": "客户编码",
+            "nullable": true
+          },
+          "NumberCode": {
+            "$ref": "#/components/schemas/InvoiceNumberCode"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderFileUrlDto": {
+        "type": "object",
+        "properties": {
+          "SourceBillNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "FileUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PageDto_InvocieDetailDto": {
+        "type": "object",
+        "properties": {
+          "Rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvocieDetailDto"
+            },
+            "nullable": true
+          },
+          "Total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          },
+          "Code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Success": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PxOrderIdFileUrlDto": {
+        "type": "object",
+        "properties": {
+          "PxOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "FileUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RelevanceOnlineOrderDto": {
+        "type": "object",
+        "properties": {
+          "PxOrderId": {
+            "type": "string",
+            "description": "客户PO号\r\nOms同步",
+            "nullable": true
+          },
+          "SourceBillNo": {
+            "type": "string",
+            "description": "合约订单号\r\nOms同步",
+            "nullable": true
+          },
+          "OmsCustomerCode": {
+            "type": "string",
+            "description": "客户编码",
+            "nullable": true
+          },
+          "Items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelevanceOnlineOrderItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RelevanceOnlineOrderItemDto": {
+        "type": "object",
+        "properties": {
+          "SapBillNo": {
+            "type": "string",
+            "description": "SAP系统流水号\r\nOms同步",
+            "nullable": true
+          },
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "Desc:发票号码\r\nDefault:\r\nNullable:True",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReqDetailByTime": {
+        "type": "object",
+        "properties": {
+          "PageIndex": {
+            "type": "integer",
+            "description": "页码",
+            "format": "int32"
+          },
+          "PageSize": {
+            "type": "integer",
+            "description": "页长",
+            "format": "int32"
+          },
+          "StartTime": {
+            "type": "string",
+            "description": "开始时间",
+            "format": "date-time"
+          },
+          "EndTime": {
+            "type": "string",
+            "description": "结束时间",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReqGetDetailForCop": {
+        "type": "object",
+        "properties": {
+          "OmsCustomerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "SourceBillNoOrPxOrderIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "InvoiceTypes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DaBenInvoiceType"
+            },
+            "nullable": true
+          },
+          "Count": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReqInvoiceDetail": {
+        "type": "object",
+        "properties": {
+          "InvoiceNumber": {
+            "type": "string",
+            "description": "客户编码",
+            "nullable": true
+          },
+          "Ct": {
+            "type": "number",
+            "description": "大贲发票id",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReqInvoiceFileUrlDto": {
+        "type": "object",
+        "properties": {
+          "InvoiceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "InvoiceNumber": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReqOrderFileUrlDto": {
+        "type": "object",
+        "properties": {
+          "SourceBillNos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "OmsCustomerCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequestHeader": {
+        "type": "object",
+        "properties": {
+          "SystemId": {
+            "type": "string",
+            "nullable": true
+          },
+          "SystemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "TokenStr": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "UserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "LoginIP": {
+            "type": "string",
+            "nullable": true
+          },
+          "LoginComputerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "OperateTime": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RespGetByInvoiceNoOrSapBillNoDto": {
+        "type": "object",
+        "properties": {
+          "DeliveryNo": {
+            "type": "string",
+            "description": "销售订单号",
+            "nullable": true
+          },
+          "InvoiceCode": {
+            "type": "string",
+            "description": "发票代码",
+            "nullable": true
+          },
+          "InvoiceNo": {
+            "type": "string",
+            "description": "发票号码/发票数电票号码",
+            "nullable": true
+          },
+          "TotalAmount": {
+            "type": "number",
+            "description": "发票合计金额",
+            "format": "double"
+          },
+          "TaxAmount": {
+            "type": "number",
+            "description": "发票税额",
+            "format": "double"
+          },
+          "PriceAmount": {
+            "type": "number",
+            "description": "未税金额",
+            "format": "double"
+          },
+          "InvoiceDate": {
+            "type": "string",
+            "description": "发票开票日期",
+            "nullable": true
+          },
+          "InvoiceType": {
+            "type": "string",
+            "description": "发票类型：0 专票，1普票，51 电子发票，31 数电票-专票，32 数电票-普票",
+            "nullable": true
+          },
+          "CustomerName": {
+            "type": "string",
+            "description": "购方抬头",
+            "nullable": true
+          },
+          "RegistionNo": {
+            "type": "string",
+            "description": "购方纳税识别码",
+            "nullable": true
+          },
+          "BankName": {
+            "type": "string",
+            "description": "银行名称",
+            "nullable": true
+          },
+          "BankAccount": {
+            "type": "string",
+            "description": "银行账号",
+            "nullable": true
+          },
+          "FileUrlPDF": {
+            "type": "string",
+            "description": "PDF文件路径",
+            "nullable": true
+          },
+          "FileUrlOFD": {
+            "type": "string",
+            "description": "OFD文件路径",
+            "nullable": true
+          },
+          "FileUrlXML": {
+            "type": "string",
+            "description": "XML文件路径",
+            "nullable": true
+          },
+          "PxOrderId": {
+            "type": "string",
+            "description": "采购单号",
+            "nullable": true
+          },
+          "OrderCode": {
+            "type": "string",
+            "description": "LINK单号",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResponseHeader": {
+        "type": "object",
+        "properties": {
+          "RetCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "RetMessage": {
+            "type": "string",
+            "nullable": true
+          },
+          "RetErrCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "Success": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "DownloadPage"
+    },
+    {
+      "name": "Invoice",
+      "description": "发票服务"
+    },
+    {
+      "name": "InvoiceDetail",
+      "description": "获取订单详情的方法"
+    },
+    {
+      "name": "InvoiceUrl",
+      "description": "发票下载地址"
+    }
+  ]
+}

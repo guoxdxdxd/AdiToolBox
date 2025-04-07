@@ -231,6 +231,27 @@
                 <h2 class="section-title">开发辅助</h2>
                 <p class="section-desc">提高开发效率的辅助工具</p>
                 <div class="tools-grid">
+                    <!-- API工具 -->
+                    <div class="tool-card">
+                        <div class="tool-header">
+                            <div class="tool-icon">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path fill="currentColor" d="M4.5,9.5L9.5,14.5L19.5,4.5L21,6L9.5,17.5L3,11L4.5,9.5M21,14H19V19H14V21H19V21H21V14M21,19V21H21V19H21M5,3H19A2,2 0 0,1 21,5V11H19V5H5V19H11V21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3Z" />
+                                </svg>
+                            </div>
+                            <h2>API工具</h2>
+                        </div>
+                        <div class="tool-content">
+                            <p>类似Postman的API测试工具，支持Swagger导入和配置持久化</p>
+                            <div class="tool-features">
+                                <span class="feature-tag">HTTP请求</span>
+                                <span class="feature-tag">Swagger导入</span>
+                                <span class="feature-tag">配置持久化</span>
+                            </div>
+                            <a href="./layout.html?tool=api-tools" class="tool-button">进入工具</a>
+                        </div>
+                    </div>
+
                     <!-- 格式化工具集 -->
                     <div class="tool-card">
                         <div class="tool-header">
@@ -268,27 +289,6 @@
                                 <span class="feature-tag">代码美化</span>
                                 <span class="feature-tag">代码压缩</span>
                                 <span class="feature-tag">代码对比</span>
-                            </div>
-                            <button class="tool-button disabled">敬请期待</button>
-                        </div>
-                    </div>
-
-                    <!-- API工具集 -->
-                    <div class="tool-card">
-                        <div class="tool-header">
-                            <div class="tool-icon">
-                                <svg viewBox="0 0 24 24" width="48" height="48">
-                                    <path fill="currentColor" d="M7 7H5A2 2 0 0 0 3 9V17H5V13H7V17H9V9A2 2 0 0 0 7 7M7 11H5V9H7M14 7H10V17H12V13H14A2 2 0 0 0 16 11V9A2 2 0 0 0 14 7M14 11H12V9H14M20 9V15H21V17H17V15H18V9H17V7H21V9Z" />
-                                </svg>
-                            </div>
-                            <h2>API工具<span class="soon-tag">开发中</span></h2>
-                        </div>
-                        <div class="tool-content">
-                            <p>API测试、Mock数据生成、HTTP请求工具</p>
-                            <div class="tool-features">
-                                <span class="feature-tag">API测试</span>
-                                <span class="feature-tag">Mock数据</span>
-                                <span class="feature-tag">HTTP请求</span>
                             </div>
                             <button class="tool-button disabled">敬请期待</button>
                         </div>
@@ -438,6 +438,52 @@
             <p>AdiToolBox - 提高开发效率的多功能工具箱</p>
             <p>© 2024 AdiToolBox. 根据 MIT 许可证开源。</p>
         </footer>
+    </div>
+
+    <!-- 导入URL对话框 -->
+    <div id="dialogOverlay" class="dialog-overlay">
+        <!-- 现有的导入URL对话框 -->
+        <div id="importUrlDialog" class="dialog">
+            <h3>导入Swagger URL</h3>
+            <input type="text" id="swaggerUrl" placeholder="输入Swagger文档URL">
+            <div class="dialog-buttons">
+                <button id="cancelImport">取消</button>
+                <button id="confirmImport">导入</button>
+            </div>
+        </div>
+
+        <!-- 添加Swagger配置管理对话框 -->
+        <div id="swaggerConfigDialog" class="dialog">
+            <h3>Swagger配置管理</h3>
+            <form id="swaggerConfigForm">
+                <div class="form-group">
+                    <label for="systemName">系统名称</label>
+                    <input type="text" id="systemName" placeholder="输入系统名称" required>
+                </div>
+                <div class="form-group">
+                    <label for="swaggerSource">Swagger来源</label>
+                    <input type="text" id="swaggerSource" placeholder="输入Swagger文档URL或本地文件路径" required>
+                </div>
+                <div class="form-group">
+                    <label for="systemDomain">系统域名</label>
+                    <input type="text" id="systemDomain" placeholder="输入系统域名" required>
+                </div>
+                <div class="dialog-buttons">
+                    <button type="button" id="cancelConfig">取消</button>
+                    <button type="submit" id="saveConfig">保存</button>
+                </div>
+            </form>
+            <div id="swaggerConfigList" class="config-list"></div>
+        </div>
+    </div>
+
+    <!-- 工具栏 -->
+    <div class="toolbar">
+        <!-- ... 保留现有代码 ... -->
+        <button id="importSwagger">导入Swagger文件</button>
+        <button id="importSwaggerUrl">导入Swagger URL</button>
+        <button id="manageSwagger">管理Swagger配置</button>
+        <!-- ... 保留现有代码 ... -->
     </div>
 
     <script src="./assets/js/tool-usage.js"></script>

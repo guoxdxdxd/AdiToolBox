@@ -1,0 +1,462 @@
+/* API工具样式 */
+
+/* 变量定义 */
+:root {
+    --bg-color: #ffffff;
+    --border-color: #e0e0e0;
+    --primary-color: #007bff;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --text-color: #333333;
+    --text-muted: #6c757d;
+}
+
+/* 工具栏样式 */
+.api-toolbar {
+    gap: 10px;
+    align-items: center;
+}
+
+.method-select {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+}
+
+.url-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+/* 标签页样式 */
+.request-tabs,
+.response-tabs {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* 内容区域样式 */
+.request-content,
+.response-content {
+    flex: 1;
+    overflow: auto;
+    padding: 10px 0;
+}
+
+.tab-content {
+    display: none;
+    height: 100%;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 表格样式 */
+.param-table,
+.header-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.param-table th,
+.header-table th,
+.param-table td,
+.header-table td {
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.param-table th,
+.header-table th {
+    background-color: #f8f9fa;
+}
+
+/* 编辑器样式 */
+.editor-container {
+    height: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+/* 侧边栏样式 */
+.sidebar-header {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collections-list {
+    padding: 10px;
+}
+
+/* API集合列表样式 */
+.collection-group-title {
+    padding: 12px;
+    font-weight: 500;
+    color: var(--text-color);
+    background-color: #f8f9fa;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.collection-group-title:hover {
+    background-color: #edf0f2;
+}
+
+.collection-group-title .collapse-icon {
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.collection-group-title .collapse-icon.collapsed {
+    transform: rotate(-90deg);
+}
+
+.collection-group-title .title-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.collection-group-title .tag-description {
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.collection-group {
+    border-bottom: 1px solid var(--border-color);
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.collection-group.collapsed {
+    max-height: 0;
+}
+
+.collection-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+    padding-left: 24px;
+}
+
+.collection-item:last-child {
+    border-bottom: none;
+}
+
+.collection-item:hover {
+    background-color: var(--hover-color);
+}
+
+.method-tag {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+    min-width: 50px;
+    text-align: center;
+}
+
+.method-tag.get {
+    background-color: #61affe;
+}
+
+.method-tag.post {
+    background-color: #49cc90;
+}
+
+.method-tag.put {
+    background-color: #fca130;
+}
+
+.method-tag.delete {
+    background-color: #f93e3e;
+}
+
+.method-tag.patch {
+    background-color: #50e3c2;
+}
+
+.collection-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* 响应区域样式 */
+.response-content {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* 状态码样式 */
+.status-code {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status-code.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+}
+
+.status-code.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--danger-color);
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    color: var(--text-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-small {
+    padding: 4px 8px;
+    font-size: 0.875rem;
+}
+
+/* 配置列表样式 */
+.config-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.config-table th,
+.config-table td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.config-table th {
+    background-color: var(--bg-color);
+    font-weight: 500;
+}
+
+.config-actions {
+    margin-bottom: 10px;
+}
+
+.config-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* 对话框样式 */
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 600px;
+    display: none;
+}
+
+.dialog.show {
+    display: block;
+}
+
+.dialog h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.dialog-buttons button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dialog-buttons button.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.dialog-buttons button:not(.btn-primary) {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* 操作按钮样式 */
+.action-btn {
+    padding: 4px 8px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.action-btn.edit {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.action-btn.delete {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.action-btn.load {
+    background-color: var(--success-color);
+    color: white;
+}
+
+/* Swagger配置管理对话框样式 */
+#swaggerConfigDialog {
+    width: 600px;
+    max-width: 90%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    background: var(--input-bg-color);
+    color: var(--text-color);
+}
+
+.config-info {
+    flex: 1;
+}
+
+.config-name {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.config-url,
+.config-domain {
+    font-size: 12px;
+    color: var(--secondary-text-color);
+    margin-top: 2px;
+}
+
+.load-config,
+.delete-config {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.load-config:hover {
+    background-color: var(--success-hover-color);
+}
+
+.delete-config:hover {
+    background-color: var(--danger-hover-color);
+}
+
+/* 导入按钮组样式 */
+.import-buttons {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.import-buttons button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.import-buttons button:hover {
+    background-color: var(--secondary-hover-color);
+} 

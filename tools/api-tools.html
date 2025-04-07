@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API工具</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/api-tools.css">
+    <!-- Monaco Editor -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: transparent;
+            overflow: auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .main-content {
+            margin-top: 0;
+            margin-bottom: 0;
+            flex: 1;
+            display: flex;
+            min-height: 0;
+        }
+        
+        /* API工具特定布局 */
+        .api-tool-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .api-toolbar {
+            display: flex;
+            padding: 10px;
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .api-sidebar {
+            width: 250px;
+            background-color: var(--bg-color);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+        }
+        
+        .api-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .api-request {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            overflow: hidden;
+        }
+        
+        .api-response {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        /* 表格样式 */
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .params-table th,
+        .params-table td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .params-table th {
+            background-color: var(--bg-color);
+            font-weight: 500;
+        }
+
+        .params-table input {
+            width: 100%;
+            padding: 4px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--input-bg-color);
+            color: var(--text-color);
+        }
+
+        .params-table button {
+            padding: 4px 8px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--danger-color);
+        }
+
+        .add-param-btn {
+            margin-top: 10px;
+            padding: 6px 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* 编辑器容器 */
+        #bodyEditor {
+            width: 100%;
+            height: 300px;
+            border: 1px solid var(--border-color);
+            margin-top: 10px;
+        }
+
+        .editor-toolbar {
+            margin-bottom: 10px;
+        }
+
+        .editor-toolbar button {
+            margin-right: 8px;
+        }
+
+        /* 导入按钮组样式 */
+        .import-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        /* 导入URL对话框样式 */
+        .import-url-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            min-width: 300px;
+            display: none;
+        }
+
+        .import-url-dialog.show {
+            display: block;
+        }
+
+        .import-url-dialog h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .import-url-dialog input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--input-bg-color);
+            color: var(--text-color);
+        }
+
+        .import-url-dialog .dialog-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .dialog-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .dialog-overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <!-- 侧边栏 -->
+            <div class="api-sidebar">
+                <div class="sidebar-header">
+                    <h3>API集合</h3>
+                    <div class="import-buttons">
+                        <button id="manageSwagger" class="btn btn-small">管理Swagger配置</button>
+                    </div>
+                </div>
+                <div id="apiCollections" class="collections-list"></div>
+            </div>
+            
+            <!-- 主内容区 -->
+            <div class="api-main">
+                <!-- 工具栏 -->
+                <div class="api-toolbar">
+                    <select id="requestMethod">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                        <option value="PATCH">PATCH</option>
+                        <option value="HEAD">HEAD</option>
+                        <option value="OPTIONS">OPTIONS</option>
+                    </select>
+                    <input type="text" id="requestUrl" placeholder="请输入请求URL">
+                    <button id="sendRequest">发送请求</button>
+                    <button id="saveRequest">保存请求</button>
+                    <div class="import-buttons">
+                        <button id="manageSwagger">管理Swagger配置</button>
+                    </div>
+                </div>
+                
+                <!-- 请求区域 -->
+                <div class="api-request">
+                    <div class="request-tabs">
+                        <button class="tab-btn active" data-tab="params">参数</button>
+                        <button class="tab-btn" data-tab="headers">请求头</button>
+                        <button class="tab-btn" data-tab="body">请求体</button>
+                    </div>
+                    <div class="request-content">
+                        <div id="paramsTab" class="tab-content active">
+                            <table class="params-table">
+                                <thead>
+                                    <tr>
+                                        <th>参数名</th>
+                                        <th>参数值</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="paramsTableBody">
+                                    <!-- 参数行将由JavaScript动态添加 -->
+                                </tbody>
+                            </table>
+                            <button id="addParam" class="add-param-btn">添加参数</button>
+                        </div>
+                        <div id="headersTab" class="tab-content">
+                            <table class="params-table">
+                                <thead>
+                                    <tr>
+                                        <th>请求头名称</th>
+                                        <th>请求头值</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="headersTableBody">
+                                    <!-- 请求头行将由JavaScript动态添加 -->
+                                </tbody>
+                            </table>
+                            <button id="addHeader" class="add-param-btn">添加请求头</button>
+                        </div>
+                        <div id="bodyTab" class="tab-content">
+                            <div class="editor-toolbar">
+                                <button id="formatBody" class="btn">格式化</button>
+                            </div>
+                            <div id="bodyEditor"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 响应区域 -->
+                <div class="api-response">
+                    <div class="response-tabs">
+                        <button class="tab-btn active" data-tab="response">响应</button>
+                        <button class="tab-btn" data-tab="headers">响应头</button>
+                    </div>
+                    <div class="response-content">
+                        <div id="responseTab" class="tab-content active">
+                            <!-- 响应内容 -->
+                        </div>
+                        <div id="responseHeadersTab" class="tab-content">
+                            <!-- 响应头 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/api-tools.js"></script>
+    <script>
+        // 自适应屏幕高度
+        function adjustHeightToScreen() {
+            const viewportHeight = window.innerHeight;
+            document.querySelector('.container').style.height = `${viewportHeight}px`;
+        }
+        
+        window.setAvailableHeight = function(height) {
+            if (height && height > 0) {
+                document.querySelector('.container').style.height = `${height}px`;
+            }
+        };
+        
+        window.addEventListener('load', adjustHeightToScreen);
+        window.addEventListener('resize', adjustHeightToScreen);
+
+        // 配置Monaco Editor
+        require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs' }});
+        require(['vs/editor/editor.main'], function() {
+            window.editor = monaco.editor.create(document.getElementById('bodyEditor'), {
+                value: '',
+                language: 'json',
+                theme: 'vs-dark',
+                minimap: { enabled: false },
+                automaticLayout: true
+            });
+        });
+    </script>
+
+    <!-- 对话框 -->
+    <div id="dialogOverlay" class="dialog-overlay">
+        <div id="swaggerConfigDialog" class="dialog">
+            <h3>Swagger配置管理</h3>
+            <div class="config-actions">
+                <button id="addConfig" class="btn btn-primary">新增配置</button>
+            </div>
+            <div class="config-list">
+                <table class="config-table">
+                    <thead>
+                        <tr>
+                            <th>系统名</th>
+                            <th>Swagger地址</th>
+                            <th>域名</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="configTableBody"></tbody>
+                </table>
+            </div>
+            <div class="dialog-buttons">
+                <button id="closeConfigDialog">关闭</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

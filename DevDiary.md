@@ -276,3 +276,23 @@
    - 匹配toolsInfo中的配置
    - 保持与首页链接的一致性
    - 确保工具使用记录功能正常工作 
+
+## 2024-03-21 15:30:00 - API工具开发
+开发了API工具模块，提供类似Postman的API测试功能。主要功能包括：
+1. HTTP请求发送和响应查看
+2. 请求头管理
+3. 参数管理
+4. Swagger文档导入
+5. 配置持久化
+
+技术实现：
+- 使用原生JavaScript实现核心功能
+- 采用面向对象的设计方式
+- 使用localStorage实现配置持久化
+- 支持Swagger JSON格式导入
+- 采用现代化的UI设计
+
+涉及文件：
+- tools/api-tools.html
+- assets/css/api-tools.css
+- assets/js/api-tools.js 
