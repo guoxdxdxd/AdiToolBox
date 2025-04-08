@@ -472,9 +472,44 @@ document.getElementById('copyText').addEventListener('click', () => {
         return;
     }
 
-    navigator.clipboard.writeText(text).then(() => {
-        showNotification('已复制到剪贴板！');
-    }).catch(error => {
-        showNotification('复制失败：' + error.message, true);
-    });
+    // 尝试使用现代Clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+            showNotification('已复制到剪贴板！');
+        }).catch(error => {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
 });
+
+// 添加兼容性复制函数
+function fallbackCopy(text) {
+    try {
+        // 创建临时textarea元素
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        
+        // 确保textarea在视口之外
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
+        textArea.style.top = '0';
+        
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        // 尝试使用execCommand
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        if (successful) {
+            showNotification('已复制到剪贴板！');
+        } else {
+            showNotification('复制失败：您的浏览器不支持自动复制，请手动复制', true);
+        }
+    } catch (err) {
+        showNotification('复制失败：' + err.message, true);
+    }
+}
