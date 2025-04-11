@@ -31,7 +31,7 @@
             width: 100%;
             border: none;
             overflow: hidden;
-            background-color: var(--background-color);
+            background-color: white;
         }
         
         /* 响应式设计 */
@@ -152,6 +152,21 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- AI工具 -->
+                    <li class="nav-menu-category">
+                        <span class="category-title">AI工具</span>
+                        <ul class="category-list">
+                            <li class="nav-menu-item">
+                                <a href="#" class="nav-menu-link" data-tool="prompt-optimizer" data-src="tools/prompt-optimizer.html">
+                                    <svg viewBox="0 0 24 24" width="18" height="18">
+                                        <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,10A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,10M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" />
+                                    </svg>
+                                    提示词优化
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -181,6 +196,10 @@
             'form-json': {
                 title: 'Form与JSON转换工具',
                 description: '支持Form格式与JSON格式互相转换，支持数组格式'
+            },
+            'prompt-optimizer': {
+                title: '提示词优化工具',
+                description: '优化大模型提示词，提高AI输出质量，支持流式返回结果'
             }
         };
 

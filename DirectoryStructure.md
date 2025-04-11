@@ -15,7 +15,8 @@ AdiToolBox/
 │   ├── string-diff.html      # 字符串差异对比工具模块，提供文本差异对比功能
 │   ├── cron-generator.html   # Cron表达式生成器模块，支持7位长度cron表达式，提供可视化配置界面
 │   ├── password-generator.html # 密码生成器模块，提供随机密码生成、强度评估和一键复制功能
-│   └── form-json.html        # Form与JSON转换工具模块，支持Form格式与JSON格式的双向转换
+│   ├── form-json.html        # Form与JSON转换工具模块，支持Form格式与JSON格式的双向转换
+│   └── prompt-optimizer.html  # 提示词优化工具模块，提供大模型提示词优化功能，支持流式返回结果
 ├── assets/                   # 存放静态资源文件
 │   ├── css/                  # 样式文件目录
 │   │   ├── common.css        # 通用样式文件，定义全局样式变量和共享组件样式
@@ -24,6 +25,7 @@ AdiToolBox/
 │   │   ├── string-diff2.css  # 字符串差异对比工具V2的样式表，使用CSS变量实现主题定制
 │   │   ├── cron-generator5.css # Cron表达式生成器第五版的样式文件
 │   │   ├── password-generator.css # 密码生成器的样式文件
+│   │   ├── prompt-optimizer.css  # 提示词优化工具的样式文件
 │   │   └── nav-menu.css      # 导航菜单的样式文件
 │   ├── js/                   # JavaScript文件目录
 │   │   ├── index.js          # 首页的JavaScript实现
@@ -31,6 +33,7 @@ AdiToolBox/
 │   │   ├── string-diff2.js   # 字符串差异对比工具V2的核心实现
 │   │   ├── cron-generator5.js # Cron表达式生成器第五版的实现
 │   │   ├── password-generator.js # 密码生成器的JavaScript实现
+│   │   ├── prompt-optimizer.js  # 提示词优化工具的JavaScript实现
 │   │   └── nav-menu.js       # 导航菜单的JavaScript实现
 │   └── lib/                  # 第三方库目录
 └── .cursor/                  # Cursor IDE配置目录
@@ -83,6 +86,9 @@ Cron表达式生成器模块，支持7位长度cron表达式，提供可视化�
 ### tools/form-json.html
 Form与JSON转换工具模块，提供Form格式与JSON格式的双向转换功能。支持数组格式的转换，提供格式化、清空等功能。包含简单示例和数组示例，帮助用户快速上手。
 
+### tools/prompt-optimizer.html
+提示词优化工具模块，提供大模型提示词优化功能，支持流式返回结果。通过调用外部API实现提示词优化，提供简洁的操作界面和实时反馈。
+
 ### assets/css/common.css
 通用样式文件，定义全局样式变量和共享组件样式，确保整个应用的样式一致性和可维护性。包含颜色变量、字体设置、按钮样式等基础样式定义。
 
@@ -101,6 +107,9 @@ Cron表达式生成器第五版的样式表文件，采用Grid布局设计，支
 ### assets/css/password-generator.css
 密码生成器的样式文件，定义了密码生成器的界面布局、密码强度指示器样式、选项控件样式等视觉效果。
 
+### assets/css/prompt-optimizer.css
+提示词优化工具的样式文件，定义了工具界面的布局、输入输出区域样式、按钮样式等视觉效果，确保与整体设计风格保持一致。
+
 ### assets/css/nav-menu.css
 导航菜单的样式文件，实现了固定定位的弹出式菜单，允许用户在不同功能页面间快速切换。
 
@@ -118,6 +127,9 @@ Cron表达式生成器第五版的JavaScript实现，支持7位cron表达式的�
 
 ### assets/js/password-generator.js
 密码生成器的JavaScript实现文件，采用面向对象的方式实现密码生成器的核心功能。
+
+### assets/js/prompt-optimizer.js
+提示词优化工具的JavaScript实现文件，处理用户输入、API调用、流式响应展示等核心功能，提供流畅的用户体验。
 
 ### assets/js/nav-menu.js
 导航菜单的JavaScript实现，提供菜单打开关闭交互、当前页面高亮显示等功能。

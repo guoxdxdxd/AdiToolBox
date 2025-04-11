@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提示词优化工具</title>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/prompt-optimizer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="prompt-optimizer-container">
+        <div class="input-section">
+            <h2>原始提示词</h2>
+            <textarea id="original-prompt" placeholder="请输入需要优化的提示词..."></textarea>
+            <div class="button-container">
+                <button id="optimize-btn" class="btn">开始优化</button>
+                <button id="copy-btn" class="btn">复制结果</button>
+                <button id="abort-btn" class="btn btn-danger" disabled>中止优化</button>
+            </div>
+        </div>
+        
+        <div class="output-section">
+            <h2>优化结果</h2>
+            <div id="optimized-prompt" class="output-content markdown-body"></div>
+        </div>
+    </div>
+
+    <script src="../assets/js/prompt-optimizer.js"></script>
+</body>
+</html> 

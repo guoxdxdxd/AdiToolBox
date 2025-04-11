@@ -276,3 +276,33 @@
    - 匹配toolsInfo中的配置
    - 保持与首页链接的一致性
    - 确保工具使用记录功能正常工作 
+
+## 2024-04-11 14:30:00 - 新增AI工具分类和提示词优化功能
+
+### 功能概述
+新增AI工具分类，包含提示词优化功能，用于优化大模型提示词，提高AI输出质量。
+
+### 技术实现
+1. 创建新的功能模块文件：
+   - `tools/prompt-optimizer.html`: 提示词优化工具的HTML界面
+   - `assets/css/prompt-optimizer.css`: 提示词优化工具的样式文件
+   - `assets/js/prompt-optimizer.js`: 提示词优化工具的JavaScript实现
+
+2. 修改现有文件：
+   - `index.html`: 添加AI工具分类和提示词优化工具入口
+   - `layout.html`: 添加AI工具分类导航菜单
+   - `DirectoryStructure.md`: 更新目录结构，添加新文件说明
+
+3. 功能特点：
+   - 简洁的界面设计，分为输入和输出两个区域
+   - 支持流式返回结果，实时显示优化进度
+   - 调用外部API实现提示词优化
+   - 完整的错误处理和用户反馈
+
+### 涉及文件
+- tools/prompt-optimizer.html
+- assets/css/prompt-optimizer.css
+- assets/js/prompt-optimizer.js
+- index.html
+- layout.html
+- DirectoryStructure.md 
